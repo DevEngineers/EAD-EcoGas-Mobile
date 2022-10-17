@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_station_owner_home.xml" value="0.4" />
-        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_update_fuel_status.xml" value="0.25416666666666665" />
+        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_station_owner_home.xml" value="0.1" />
+        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_update_diesel_status.xml" value="0.264" />
+        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_update_fuel_status.xml" value="0.264" />
+        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_update_petrol_status.xml" value="0.264" />
+        <entry key="..\:/SLIIT/4th Year/Semester 02/Enterprise Application Development/Project/app/src/main/res/layout/activity_update_super_petrol_status.xml" value="0.264" />
       </map>
     </option>
   </component>
