@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EcoGas">
         <activity
+            android:name=".UpdateFuelStatus"
+            android:exported="true" />
+        <activity
             android:name=".StationOwnerHome"
             android:exported="true" />
         <activity
