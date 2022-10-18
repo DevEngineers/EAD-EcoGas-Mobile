@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StationOwnerHome extends AppCompatActivity {
     Button btnUpdateP,btnUpdateSP,btnUpdateD;
-    TextView name,stName,petrol,superPetrol,diesel,pQ,psQ,dQ,pArrival,psArrival,dArrival;
+    TextView name,stName,petrol,superPetrol,diesel,location,pQ,psQ,dQ,pArrival,psArrival,dArrival;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class StationOwnerHome extends AppCompatActivity {
         pArrival = findViewById(R.id.petrol92Arrival);
         psArrival = findViewById(R.id.petrol95Arrival);
         dArrival = findViewById(R.id.dieselArrival);
+        location = findViewById(R.id.location);
 
         btnUpdateP.setOnClickListener(v -> {
             /*Redirecting to update petrol capacity from via Intent**/
@@ -50,20 +51,20 @@ public class StationOwnerHome extends AppCompatActivity {
         });
 
         btnUpdateSP.setOnClickListener(v -> {
-                /*Redirecting to update super petrol capacity from via Intent**/
-                Intent intent = new Intent(StationOwnerHome.this, UpdateSuperPetrolStatus.class);
-                startActivity(intent);
+            /*Redirecting to update super petrol capacity from via Intent**/
+            Intent intent = new Intent(StationOwnerHome.this, UpdateSuperPetrolStatus.class);
+            startActivity(intent);
         });
 
         btnUpdateD.setOnClickListener(v -> {
-                /*Redirecting to update diesel capacity from via Intent**/
-                Intent intent = new Intent(StationOwnerHome.this, UpdateDieselStatus.class);
-                startActivity(intent);
+            /*Redirecting to update diesel capacity from via Intent**/
+            Intent intent = new Intent(StationOwnerHome.this, UpdateDieselStatus.class);
+            startActivity(intent);
         });
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
-        Call<Station> call = stationService.getStationDetails("");
+        Call<Station> call = stationService.getStationDetails();
         call.enqueue(new Callback<Station>() {
             @Override
             public void onResponse(@NonNull Call<Station> call, @NonNull Response<Station> response) {
@@ -75,6 +76,7 @@ public class StationOwnerHome extends AppCompatActivity {
                     petrol.setText(station.getPetrol().getCapacity());
                     superPetrol .setText(station.getSuperPetrol().getCapacity());
                     diesel.setText(station.getDiesel().getCapacity());
+                    location.setText(station.getLocation());
                     pQ.setText(station.getPetrolQueue());
                     psQ.setText(station.getSuperPetrolQueue());
                     dQ.setText(station.getDieselQueue());

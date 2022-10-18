@@ -30,4 +30,6 @@
     <string name="updateSP">Update Super Petrol Status</string>
     <string name="updateP">Update Petrol Status</string>
     <string name="updateD">Update Diesel Status</string>
+    <string name="location">Location:</string>
+    <string name="s_location">TextView</string>
 </resources>
