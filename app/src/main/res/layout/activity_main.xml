@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,58 +12,85 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:text="Register"
         android:textColor="#009688"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
-    />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="147dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/registerTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:src="@drawable/fuel2"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User Name"
-        android:layout_marginTop="150dp" />
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="31dp"
+        android:hint="User Name" />
+
+    <EditText
+        android:id="@+id/mobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="31dp"
+        android:hint="Mobile Number"
+        android:inputType="text|number" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/mobileNo"
+        android:layout_marginTop="31dp"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/username"/>
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/repassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="31dp"
         android:hint="Reenter Password"
-        android:inputType="textPassword"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/password"/>
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/repassword"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="35dp"
         android:backgroundTint="#009688"
         android:text="Register" />
 
-    <Button
+    <TextView
         android:id="@+id/btnsignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnsignup"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#00BCD4"
-        android:text="Already have an Account!Log in" />
+        android:layout_marginTop="19dp"
+        android:backgroundTint="#009688"
+        android:gravity="center_horizontal"
+        android:text="Already have an Account! Log in"
+        android:textColor="#009688"
+        android:textSize="16dp" />
+
 
 
 </RelativeLayout>

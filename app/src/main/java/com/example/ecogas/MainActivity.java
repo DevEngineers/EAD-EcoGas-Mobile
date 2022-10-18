@@ -15,8 +15,9 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     EditText username, password, repassword;
-    Button signup, signin;
+    Button signup;
     DBMaster DB;
+    TextView signin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         repassword = (EditText) findViewById(R.id.repassword);
         signup = (Button) findViewById(R.id.btnsignup);
-        signin = (Button) findViewById(R.id.btnsignin);
+        signin = (TextView) findViewById(R.id.btnsignin);
         DB = new DBMaster(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         if(checkuser==false){
                             Boolean insert = DB.insertData(user, pass);
                             if(insert==true){
-                                Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
                                 startActivity(intent);
                             }else{
