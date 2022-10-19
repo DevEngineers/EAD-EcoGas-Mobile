@@ -1,30 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ViewAllStation">
 
-    <TextView
-        android:id="@+id/stationListTitle"
-        android:layout_width="wrap_content"
+    <SearchView
+        android:id="@+id/shapeListSearchView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="@string/station_list"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:iconifiedByDefault="false"
+        android:background="@color/darkerGray"
+        android:queryHint="Location" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stationListRecycleView"
-        android:layout_width="411dp"
-        android:layout_height="653dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stationListTitle" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout">
+
+        <Button
+            android:id="@+id/petrol92Btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Petrol 92"
+            android:background="@color/darkerGray"
+            android:onClick="petrol92Tapped"/>
+
+        <Button
+            android:id="@+id/petrol95Btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Petrol 95"
+            android:background="@color/darkerGray"
+            android:onClick="petrol95Tapped"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/filterTabsLayout2">
+        <Button
+            android:id="@+id/dieselBtn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Diesel"
+            android:background="@color/darkerGray"
+            android:onClick="dieselTapped"/>
+
+        <Button
+            android:id="@+id/superDieselBtn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Super Diesel"
+            android:background="@color/darkerGray"
+            android:onClick="superDieselTapped"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/stationsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
