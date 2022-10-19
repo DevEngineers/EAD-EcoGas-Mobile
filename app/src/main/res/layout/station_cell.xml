@@ -7,10 +7,10 @@
     android:background="@color/darkGray">
 
     <TextView
-        android:id="@+id/StationCode"
+        android:id="@+id/StCodeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/station_code"
+        android:text="Station ID"
         android:textSize="15sp"
         android:gravity="center_vertical"
         android:layout_marginStart="10dp"
@@ -18,20 +18,20 @@
         />
 
     <TextView
-        android:id="@+id/StationName"
+        android:id="@+id/StNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/station_name"
+        android:text="Station name"
         android:textSize="15sp"
         android:gravity="center_vertical"
         android:layout_marginStart="10dp"
         android:padding="5dp"/>
 
     <TextView
-        android:id="@+id/StationLocation"
+        android:id="@+id/StLocationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/station_location"
+        android:text="Station location"
         android:textSize="15sp"
         android:gravity="center_vertical"
         android:layout_marginStart="10dp"
