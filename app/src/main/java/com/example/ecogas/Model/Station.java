@@ -9,9 +9,11 @@ public class Station {
     private Fuel petrol;
     private Fuel superPetrol;
     private Fuel diesel;
+    private Fuel superDiesel;
     private int petrolQueue;
     private int superPetrolQueue;
     private int dieselQueue;
+    private int superDieselQueue;
 
     public Station() {
     }

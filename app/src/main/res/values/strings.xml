@@ -12,7 +12,7 @@
     <string name="owner_name">TextView</string>
     <string name="petrol92q">TextView</string>
     <string name="p95_arr">TextView</string>
-    <string name="number_of_vehicles_in_queue">Number of vehicles in queue</string>
+    <string name="number_of_vehicles_in_queue">Vehicles in queue</string>
     <string name="p92_arr">TextView</string>
     <string name="update_status">Update Status</string>
     <string name="d_arr">TextView</string>
@@ -32,4 +32,6 @@
     <string name="updateD">Update Diesel Status</string>
     <string name="location">Location:</string>
     <string name="s_location">TextView</string>
+    <string name="superDiesel">SuperDiesel:</string>
+    <string name="updateSD">Update Super Diesel Status</string>
 </resources>

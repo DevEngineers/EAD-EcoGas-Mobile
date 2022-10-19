@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateDieselStatus">
+    android:elevation="10dp"
+    tools:context=".UpdateSuperDieselStatus">
 
     <TextView
         android:id="@+id/up_title"
@@ -25,37 +26,36 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/tile_color"
-        android:elevation="10dp"
+        android:background="#d4d4d4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/up_title">
 
         <Button
-            android:id="@+id/datePickerD"
+            android:id="@+id/datePickerSD"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/secondary_button"
             android:text="@string/date"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/editTextDD"
+            app:layout_constraintStart_toEndOf="@+id/editTextSDD"
             app:layout_constraintTop_toBottomOf="@+id/textView17"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <Button
-            android:id="@+id/timePickerD"
+            android:id="@+id/timePickerSD"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/secondary_button"
             android:text="@string/time"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/editTextDT"
-            app:layout_constraintTop_toBottomOf="@+id/datePickerD"
+            app:layout_constraintStart_toEndOf="@+id/editTextSDT"
+            app:layout_constraintTop_toBottomOf="@+id/datePickerSD"
             tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/diesel"
+            android:text="@string/superDiesel"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextD" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextSD" />
 
         <TextView
             android:id="@+id/textView21"
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <EditText
-            android:id="@+id/editTextD"
+            android:id="@+id/editTextSD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -109,7 +109,7 @@
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/editTextDD"
+            android:id="@+id/editTextSDD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -123,7 +123,7 @@
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/editTextDT"
+            android:id="@+id/editTextSDT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -133,13 +133,13 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDD"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSDD"
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/updateDiesel"
+        android:id="@+id/updateSuperDiesel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -147,7 +147,6 @@
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/main_button"
         android:text="@string/update"
-        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
