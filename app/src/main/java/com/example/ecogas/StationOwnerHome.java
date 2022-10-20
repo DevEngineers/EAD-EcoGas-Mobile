@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.ecogas.Model.Station;
 import com.example.ecogas.Service.StationService;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,30 +73,31 @@ public class StationOwnerHome extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://randomuser.me/api/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:29193/Station/").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
-        Call<Station> call = stationService.getStationDetails("");
+        Call<Station> call = stationService.getStationDetails("63502452ecd5b64788220175");
         call.enqueue(new Callback<Station>() {
             @Override
             public void onResponse(@NonNull Call<Station> call, @NonNull Response<Station> response) {
                 if(response.isSuccessful()){
                     Station station = response.body();
 
-                    name.setText(station.getOwnerName());
-                    stName.setText(station.getStationName());
-                    petrol.setText(station.getPetrol().getCapacity());
-                    superPetrol .setText(station.getSuperPetrol().getCapacity());
-                    diesel.setText(station.getDiesel().getCapacity());
-                    superDiesel.setText(station.getSuperDiesel().getCapacity());
-                    location.setText(station.getLocation());
-                    pQ.setText(station.getPetrolQueue());
-                    psQ.setText(station.getSuperPetrolQueue());
-                    dQ.setText(station.getDieselQueue());
-                    sdArrival.setText(station.getSuperDieselQueue());
-                    pArrival.setText(new StringBuilder().append(station.getPetrol().getArrivalDate()).append(" ").append(station.getPetrol().getArrivalTime()));
-                    psArrival.setText(new StringBuilder().append(station.getSuperPetrol().getArrivalDate()).append(" ").append(station.getSuperPetrol().getArrivalTime()));
-                    dArrival.setText(new StringBuilder().append(station.getDiesel().getArrivalDate()).append(" ").append(station.getDiesel().getArrivalTime()));
-                    sdArrival.setText(new StringBuilder().append(station.getSuperDiesel().getArrivalDate()).append(" ").append(station.getSuperDiesel().getArrivalTime()));
+                    name.setText(String.valueOf(station.getOwnerName()));
+                    stName.setText(String.valueOf(station.getStationName()));
+                    petrol.setText(String.valueOf(station.getFuel().get(0).getCapacity()));
+                    superPetrol .setText(String.valueOf(station.getFuel().get(1).getCapacity()));
+                    diesel.setText(String.valueOf(station.getFuel().get(2).getCapacity()));
+                    superDiesel.setText(String.valueOf(station.getFuel().get(3).getCapacity()));
+                    location.setText(String.valueOf(station.getLocation()));
+                    pQ.setText(String.valueOf(station.getPetrolQueue()));
+                    psQ.setText(String.valueOf(station.getSuperPetrolQueue()));
+                    dQ.setText(String.valueOf(station.getDieselQueue()));
+                    sdQ.setText(String.valueOf(station.getSuperDieselQueue()));
+                    sdArrival.setText(String.valueOf(response.body().getSuperDieselQueue()));
+                    pArrival.setText(new StringBuilder().append(station.getFuel().get(0).getArrivalDate()).append(" ").append(station.getFuel().get(0).getArrivalTime()));
+                    psArrival.setText(new StringBuilder().append(station.getFuel().get(1).getArrivalDate()).append(" ").append(station.getFuel().get(1).getArrivalTime()));
+                    dArrival.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
+                    sdArrival.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
                 }
 //                else{
@@ -105,7 +107,7 @@ public class StationOwnerHome extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<Station> call, @NonNull Throwable t) {
-                Toast.makeText(StationOwnerHome.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(StationOwnerHome.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

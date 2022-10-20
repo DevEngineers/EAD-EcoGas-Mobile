@@ -1,5 +1,7 @@
 package com.example.ecogas.Model;
 
+import java.util.ArrayList;
+
 public class Station {
 
     private String stationID;

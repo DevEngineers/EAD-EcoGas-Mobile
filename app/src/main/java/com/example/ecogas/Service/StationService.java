@@ -7,9 +7,9 @@ import retrofit2.http.*;
 
 public interface StationService {
 
-    @GET("station/{id}")
+    @GET("{id}")
     Call<Station> getStationDetails(@Path("id") String id);
 
-    @PUT("station/{id}")
+    @PUT("{id}")
     Call<Fuel> updateFuelStatus(@Path("id") String id, @Body Fuel fuel); //id should be ownerID aka userID
 }
