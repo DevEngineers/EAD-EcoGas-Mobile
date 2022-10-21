@@ -7,10 +7,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 
@@ -63,18 +61,16 @@ public class UpdateFuelStatus extends AppCompatActivity {
         });
 
         editTextAT.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    if(hourOfDay > 12) {
-                        editTextAT.setText(new StringBuilder().append((hourOfDay - 12)).append(":").append(minute).append(" PM"));
-                    } else if(hourOfDay == 12) {
-                        editTextAT.setText(new StringBuilder().append("12:").append(minute).append(" PM"));
-                    } else if(hourOfDay < 12) {
-                        if(hourOfDay!=0) {
-                            editTextAT.setText(new StringBuilder().append((hourOfDay)).append(":").append(minute).append(" AM"));
-                        } else {
-                            editTextAT.setText(new StringBuilder().append("12:").append(minute).append(" AM"));
-                        }
+            TimePickerDialog.OnTimeSetListener time = (view12, hourOfDay, minute) -> {
+                if(hourOfDay > 12) {
+                    editTextAT.setText(new StringBuilder().append((hourOfDay - 12)).append(":").append(minute).append(" PM"));
+                } else if(hourOfDay == 12) {
+                    editTextAT.setText(new StringBuilder().append("12:").append(minute).append(" PM"));
+                } else if(hourOfDay < 12) {
+                    if(hourOfDay!=0) {
+                        editTextAT.setText(new StringBuilder().append((hourOfDay)).append(":").append(minute).append(" AM"));
+                    } else {
+                        editTextAT.setText(new StringBuilder().append("12:").append(minute).append(" AM"));
                     }
                 }
             };

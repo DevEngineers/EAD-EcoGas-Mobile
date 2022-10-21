@@ -2,7 +2,7 @@
     <string name="app_name">EcoGas</string>
     <string name="station_name">Station Name:</string>
     <string name="stName">TextView</string>
-    <string name="available_fuel">Available Fuel</string>
+    <string name="available_fuel">Available Fuel (Ltr)</string>
     <string name="diesel">Diesel:</string>
     <string name="petrol95_fuel">TextView</string>
     <string name="welcome">Welcome</string>
