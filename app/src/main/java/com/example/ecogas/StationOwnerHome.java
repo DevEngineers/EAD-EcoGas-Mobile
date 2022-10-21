@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class StationOwnerHome extends AppCompatActivity {
     Button btnUpdateP,btnUpdateSP,btnUpdateD,btnUpdateSD;
     TextView name,stName,petrol,superPetrol,diesel,superDiesel,location,pQ,psQ,dQ,sdQ,pArrival,psArrival,dArrival,sdArrival;
+    String pID,p95ID,dID,sdID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,31 +52,39 @@ public class StationOwnerHome extends AppCompatActivity {
 
         btnUpdateP.setOnClickListener(v -> {
             /*Redirecting to update petrol capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdatePetrolStatus.class);
+            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
+            intent.putExtra("FUEL_ID", pID);
+            intent.putExtra("FUEL_NAME","Petrol");
             startActivity(intent);
         });
 
         btnUpdateSP.setOnClickListener(v -> {
             /*Redirecting to update super petrol capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateSuperPetrolStatus.class);
+            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
+            intent.putExtra("FUEL_ID", p95ID);
+            intent.putExtra("FUEL_NAME","SuperPetrol");
             startActivity(intent);
         });
 
         btnUpdateD.setOnClickListener(v -> {
             /*Redirecting to update diesel capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateDieselStatus.class);
+            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
+            intent.putExtra("FUEL_ID", dID);
+            intent.putExtra("FUEL_NAME","Diesel");
             startActivity(intent);
         });
 
         btnUpdateSD.setOnClickListener(v -> {
             /*Redirecting to update diesel capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateSuperDieselStatus.class);
+            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
+            intent.putExtra("FUEL_ID", sdID);
+            intent.putExtra("FUEL_NAME","SuperDiesel");
             startActivity(intent);
         });
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:29193/Station/").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
-        Call<Station> call = stationService.getStationDetails("63502452ecd5b64788220175");
+        Call<Station> call = stationService.getStationByOwnerID(SessionApplication.getUserID());
         call.enqueue(new Callback<Station>() {
             @Override
             public void onResponse(@NonNull Call<Station> call, @NonNull Response<Station> response) {
@@ -99,6 +108,10 @@ public class StationOwnerHome extends AppCompatActivity {
                     dArrival.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
                     sdArrival.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
+                    pID = station.getFuel().get(0).getId();
+                    p95ID = station.getFuel().get(1).getId();
+                    dID = station.getFuel().get(2).getId();
+                    sdID = station.getFuel().get(3).getId();
                 }
 //                else{
 //                    Toast.makeText(StationOwnerHome.this, "ERROR", Toast.LENGTH_SHORT).show();

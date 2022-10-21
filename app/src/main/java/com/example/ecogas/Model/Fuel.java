@@ -2,7 +2,7 @@ package com.example.ecogas.Model;
 
 public class Fuel {
 
-    private String fuelID;
+    private String id;
     private String stationID;
     private String fuelName;
     private String capacity;
@@ -12,12 +12,12 @@ public class Fuel {
     public Fuel() {
     }
 
-    public String getFuelID() {
-        return fuelID;
+    public String getId() {
+        return id;
     }
 
-    public void setFuelID(String fuelID) {
-        this.fuelID = fuelID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStationID() {

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".SessionApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
@@ -14,16 +15,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.EcoGas">
         <activity
-            android:name=".UpdateSuperDieselStatus"
-            android:exported="true" />
-        <activity
-            android:name=".UpdateSuperPetrolStatus"
-            android:exported="true" />
-        <activity
-            android:name=".UpdateDieselStatus"
-            android:exported="true" />
-        <activity
-            android:name=".UpdatePetrolStatus"
+            android:name=".UpdateFuelStatus"
             android:exported="true" />
         <activity
             android:name=".StationOwnerHome"
