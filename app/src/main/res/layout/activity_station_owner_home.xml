@@ -18,7 +18,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="380dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
@@ -37,6 +37,7 @@
                     android:text="@string/welcome"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="24sp"
+                    android:textStyle="bold|italic"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +51,7 @@
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -57,7 +59,7 @@
                     android:id="@+id/stName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/stName"
                     android:textColor="@color/black"
@@ -70,14 +72,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/available_fuel"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="20sp"
+                    android:textStyle="bold|italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/station" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -88,6 +91,7 @@
                     android:text="@string/petrol_92"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -100,6 +104,7 @@
                     android:text="@string/petrol_95"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/petrol92"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -112,6 +117,7 @@
                     android:text="@string/diesel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -119,7 +125,7 @@
                     android:id="@+id/petrol92"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/petrol92_fuel"
                     android:textColor="@color/black"
@@ -131,7 +137,7 @@
                     android:id="@+id/petrol95"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/petrol95_fuel"
                     android:textColor="@color/black"
@@ -143,7 +149,7 @@
                     android:id="@+id/diesel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/diesel_fuel"
                     android:textColor="@color/black"
@@ -161,6 +167,7 @@
                     android:text="@string/number_of_vehicles_in_queue"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="20sp"
+                    android:textStyle="bold|italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -175,6 +182,7 @@
                     android:text="@string/petrol_92"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -187,6 +195,7 @@
                     android:text="@string/petrol_95"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/petrol92Q"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -199,6 +208,7 @@
                     android:text="@string/diesel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -206,7 +216,7 @@
                     android:id="@+id/petrol92Q"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="243dp"
                     android:text="@string/petrol92q"
@@ -221,7 +231,7 @@
                     android:id="@+id/dieselQ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/dieselq"
                     android:textColor="@color/black"
@@ -233,7 +243,7 @@
                     android:id="@+id/petrol95Q"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/petrol95q"
                     android:textColor="@color/black"
@@ -245,11 +255,12 @@
                     android:id="@+id/ownerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/owner_name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="24sp"
+                    android:textStyle="bold|italic"
                     app:layout_constraintStart_toEndOf="@+id/textView"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -257,25 +268,26 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/location"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/stName"
-                    app:layout_constraintTop_toBottomOf="@+id/ownerName" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/station" />
 
                 <TextView
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/s_location"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/ownerName" />
+                    app:layout_constraintTop_toBottomOf="@+id/station" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -286,6 +298,7 @@
                     android:text="@string/superDiesel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/diesel"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -293,7 +306,7 @@
                     android:id="@+id/superDiesel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textColor="@color/black"
@@ -310,6 +323,7 @@
                     android:text="@string/superDiesel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/dieselQ"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -317,7 +331,7 @@
                     android:id="@+id/superDieselQ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textColor="@color/black"
@@ -343,7 +357,7 @@
                     android:id="@+id/petrol95Arrival"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/p95_arr"
                     android:textColor="@color/black"
@@ -360,6 +374,7 @@
                     android:text="@string/petrol_92"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -372,6 +387,7 @@
                     android:text="@string/petrol_95"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -384,6 +400,7 @@
                     android:text="@string/diesel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -391,7 +408,7 @@
                     android:id="@+id/petrol92Arrival"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/p92_arr"
                     android:textColor="@color/black"
@@ -403,7 +420,7 @@
                     android:id="@+id/dieselArrival"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/d_arr"
                     android:textColor="@color/black"
@@ -420,6 +437,7 @@
                     android:text="@string/fuel_arriving_time"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="20sp"
+                    android:textStyle="bold|italic"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -432,6 +450,7 @@
                     android:text="@string/superDiesel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
@@ -439,7 +458,7 @@
                     android:id="@+id/superDieselArrival"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textColor="@color/black"

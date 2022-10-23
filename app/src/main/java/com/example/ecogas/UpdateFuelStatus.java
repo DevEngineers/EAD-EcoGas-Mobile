@@ -76,7 +76,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
                     editTextAT.setText(new StringBuilder().append((hourOfDay - 12)).append(":").append(minute).append(" PM"));
                 } else if(hourOfDay == 12) {
                     editTextAT.setText(new StringBuilder().append("12:").append(minute).append(" PM"));
-                } else if(hourOfDay < 12) {
+                } else {
                     if(hourOfDay!=0) {
                         editTextAT.setText(new StringBuilder().append((hourOfDay)).append(":").append(minute).append(" AM"));
                     } else {

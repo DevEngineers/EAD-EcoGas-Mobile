@@ -12,8 +12,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.EcoGas">
+        android:theme="@style/Theme.EcoGas"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AdminHome"
+            android:exported="true" />
         <activity
             android:name=".UpdateFuelStatus"
             android:exported="true" />
