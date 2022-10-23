@@ -453,50 +453,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/main_button"
-                android:text="@string/updateP"
+                android:text="@string/update_status"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/updateSuperP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/secondary_button"
-                android:text="@string/updateSP"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
-            <Button
-                android:id="@+id/updateD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/main_button"
-                android:text="@string/updateD"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/updateSD"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@color/secondary_button"
-                android:text="@string/updateSD"
-                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 

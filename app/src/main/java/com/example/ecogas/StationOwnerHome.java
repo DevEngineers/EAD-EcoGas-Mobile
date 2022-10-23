@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StationOwnerHome extends AppCompatActivity {
-    Button btnUpdateP,btnUpdateSP,btnUpdateD,btnUpdateSD;
+    Button btnUpdateP;
     TextView name,stName,petrol,superPetrol,diesel,superDiesel,location,pQ,psQ,dQ,sdQ,pArrival,psArrival,dArrival,sdArrival;
     String pID,p95ID,dID,sdID;
 
@@ -30,9 +30,6 @@ public class StationOwnerHome extends AppCompatActivity {
         setContentView(R.layout.activity_station_owner_home);
 
         btnUpdateP=findViewById(R.id.updateP);
-        btnUpdateSP=findViewById(R.id.updateSuperP);
-        btnUpdateD=findViewById(R.id.updateD);
-        btnUpdateSD = findViewById(R.id.updateSD);
 
         name = findViewById(R.id.ownerName);
         stName = findViewById(R.id.stName);
@@ -55,30 +52,6 @@ public class StationOwnerHome extends AppCompatActivity {
             Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
             intent.putExtra("FUEL_ID", pID);
             intent.putExtra("FUEL_NAME","Petrol");
-            startActivity(intent);
-        });
-
-        btnUpdateSP.setOnClickListener(v -> {
-            /*Redirecting to update super petrol capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", p95ID);
-            intent.putExtra("FUEL_NAME","SuperPetrol");
-            startActivity(intent);
-        });
-
-        btnUpdateD.setOnClickListener(v -> {
-            /*Redirecting to update diesel capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", dID);
-            intent.putExtra("FUEL_NAME","Diesel");
-            startActivity(intent);
-        });
-
-        btnUpdateSD.setOnClickListener(v -> {
-            /*Redirecting to update diesel capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", sdID);
-            intent.putExtra("FUEL_NAME","SuperDiesel");
             startActivity(intent);
         });
 
