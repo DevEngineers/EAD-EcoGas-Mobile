@@ -1,87 +1,23 @@
 package com.example.ecogas.Model;
 
+import java.util.ArrayList;
+
 public class Station {
 
     private String stationID;
     private String ownerID;
     private String ownerName;
     private String stationName;
-    private String stationLocation;
     private Fuel petrol;
     private Fuel superPetrol;
     private Fuel diesel;
+    private Fuel superDiesel;
     private int petrolQueue;
     private int superPetrolQueue;
     private int dieselQueue;
+    private int superDieselQueue;
 
-    public Station(String stationID,String stationName,String stationLocation) {
-        this.stationID = stationID;
-        this.stationName = stationName;
-        this.stationLocation = stationLocation;
-    }
-
-    public String getStationID() {
-        return stationID;
-    }
-
-    public void setStationID(String stationID) {
-        this.stationID = stationID;
-    }
-
-    public String getOwnerID() {
-        return ownerID;
-    }
-
-    public void setOwnerID(String ownerID) {
-        this.ownerID = ownerID;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    public String getStationName() {
-        return stationName;
-    }
-
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
-    }
-
-    public String getStationLocation() {
-        return stationLocation;
-    }
-
-    public void setStationLocation(String stationLocation) {
-        this.stationLocation = stationLocation;
-    }
-
-    public Fuel getPetrol() {
-        return petrol;
-    }
-
-    public void setPetrol(Fuel petrol) {
-        this.petrol = petrol;
-    }
-
-    public Fuel getSuperPetrol() {
-        return superPetrol;
-    }
-
-    public void setSuperPetrol(Fuel superPetrol) {
-        this.superPetrol = superPetrol;
-    }
-
-    public Fuel getDiesel() {
-        return diesel;
-    }
-
-    public void setDiesel(Fuel diesel) {
-        this.diesel = diesel;
+    public Station() {
     }
 
     public int getPetrolQueue() {
@@ -106,5 +42,61 @@ public class Station {
 
     public void setDieselQueue(int dieselQueue) {
         this.dieselQueue = dieselQueue;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
+    }
+
+    public String getStationID() {
+        return stationID;
+    }
+
+    public void setStationID(String stationID) {
+        this.stationID = stationID;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+
+    public Fuel getPetrol() {
+        return petrol;
+    }
+
+    public void setPetrol(Fuel petrol) {
+        this.petrol = petrol;
+    }
+
+    public Fuel getSuperPetrol() {
+        return superPetrol;
+    }
+
+    public void setSuperPetrol(Fuel superPetrol) {
+        this.superPetrol = superPetrol;
+    }
+
+    public Fuel getDiesel() {
+        return diesel;
+    }
+
+    public void setDiesel(Fuel diesel) {
+        this.diesel = diesel;
     }
 }
