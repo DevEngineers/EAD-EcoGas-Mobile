@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EcoGas</string>
+    <string name="search">Search</string>
+    <string name="fuel_type">Fuel Type</string>
+    <string name="location">Location</string>
+    <string name="station_name">Station Name</string>
 </resources>
