@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Station {
 
-    private String stationID;
+    private String id;
     private String ownerID;
     private String ownerName;
     private String stationName;
@@ -17,8 +17,8 @@ public class Station {
 
     public Station() { }
 
-    public Station(String stationID, String ownerID, String ownerName, String stationName, String location, ArrayList<Fuel> fuel, int petrolQueue, int superPetrolQueue, int dieselQueue, int superDieselQueue) {
-        this.stationID = stationID;
+    public Station(String id, String ownerID, String ownerName, String stationName, String location, ArrayList<Fuel> fuel, int petrolQueue, int superPetrolQueue, int dieselQueue, int superDieselQueue) {
+        this.id = id;
         this.ownerID = ownerID;
         this.ownerName = ownerName;
         this.stationName = stationName;
@@ -30,12 +30,12 @@ public class Station {
         this.superDieselQueue = superDieselQueue;
     }
 
-    public String getStationID() {
-        return stationID;
+    public String getId() {
+        return id;
     }
 
-    public void setStationID(String stationID) {
-        this.stationID = stationID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getOwnerID() {

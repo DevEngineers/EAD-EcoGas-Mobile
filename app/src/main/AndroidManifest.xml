@@ -15,13 +15,25 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".AdminHome"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UpdateFuelStatus" />
+        </activity>
         <activity
             android:name=".UpdateFuelStatus"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UpdateFuelStatus" />
+        </activity>
         <activity
             android:name=".StationOwnerHome"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StationOwnerHome" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

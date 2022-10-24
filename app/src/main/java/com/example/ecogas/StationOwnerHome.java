@@ -28,6 +28,7 @@ public class StationOwnerHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_owner_home);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnUpdateP=findViewById(R.id.updateP);
 
@@ -64,6 +65,7 @@ public class StationOwnerHome extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Station station = response.body();
 
+                    SessionApplication.setStationID(String.valueOf(station.getId()));
                     name.setText(String.valueOf(station.getOwnerName()));
                     stName.setText(String.valueOf(station.getStationName()));
                     petrol.setText(String.valueOf(station.getFuel().get(0).getCapacity()));
@@ -86,9 +88,9 @@ public class StationOwnerHome extends AppCompatActivity {
                     dID = station.getFuel().get(2).getId();
                     sdID = station.getFuel().get(3).getId();
                 }
-//                else{
-//                    Toast.makeText(StationOwnerHome.this, "ERROR", Toast.LENGTH_SHORT).show();
-//                }
+                else{
+                    Toast.makeText(StationOwnerHome.this, "Unable to get station details", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
