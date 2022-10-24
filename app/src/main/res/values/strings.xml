@@ -35,4 +35,6 @@
     <string name="superDiesel">Super Diesel:</string>
     <string name="updateSD">Update Super Diesel Status</string>
     <string name="data">Date:</string>
+    <string name="search">Search</string>
+    <string name="fuel_type">Fuel Type</string>
 </resources>

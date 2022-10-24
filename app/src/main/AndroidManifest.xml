@@ -15,6 +15,19 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.EcoGas">
         <activity
+            android:name=".ViewStations"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ViewAllStation"
+            android:exported="true" />
+        <activity
+            android:name=".DetailStation"
+            android:exported="true" />
+        <activity
             android:name=".UpdateFuelStatus"
             android:exported="true" />
         <activity

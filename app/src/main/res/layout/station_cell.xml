@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:padding="20dp"
         android:layout_margin="5dp"
-        android:background="@color/darkGray">
+        android:background="@color/tile_color">
 
         <TextView
             android:id="@+id/StNameText"
