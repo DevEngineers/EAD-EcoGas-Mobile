@@ -121,7 +121,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
                 Toast.makeText(UpdateFuelStatus.this,"Select Arrival Time.. ",Toast.LENGTH_SHORT).show();
             }
             else {
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:29193/Station/").addConverterFactory(GsonConverterFactory.create()).build();
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
                 StationService stationService = retrofit.create(StationService.class);
                 Call<Station> call = stationService.updateFuelStatus(SessionApplication.getStationID(),fuel); //Pass Station ID as id
                 call.enqueue(new Callback<Station>() {

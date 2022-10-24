@@ -47,7 +47,7 @@ public class AdminHome extends AppCompatActivity {
     }
 
     private void initImageBitmaps() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:29193/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
         Call<List<Station>> call = stationService.getAllStationDetails();
         call.enqueue(new Callback<List<Station>>() {

@@ -55,7 +55,7 @@ public class StationOwnerHome extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:29193/Station/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
         Call<Station> call = stationService.getStationByOwnerID(SessionApplication.getUserID());
         call.enqueue(new Callback<Station>() {
