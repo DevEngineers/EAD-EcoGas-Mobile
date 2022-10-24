@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".MainActivity">
+    tools:context=".Register">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,13 +17,15 @@
         android:orientation="vertical">
 
     <TextView
-        android:id="@+id/loginTitle"
+        android:id="@+id/registerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
-        android:text="Login"
+        android:text="Register"
         android:textColor="#009688"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -31,58 +33,83 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="15dp"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:src="@drawable/fuel"
-        android:textAlignment="center" />
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:src="@drawable/fuel" />
 
     <EditText
-        android:id="@+id/username1"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:hint="User Name" />
+        android:layout_marginTop="40dp"
+        android:hint="Name" />
 
     <EditText
-        android:id="@+id/password1"
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="User Name" />
+
+
+    <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/forgotPassword1"
+    <EditText
+        android:id="@+id/repassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="34dp"
-        android:gravity="center_horizontal"
-        android:text="Forgot Password?"
-        android:textColor="#009688"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="30dp"
+        android:hint="Reenter Password"
+        android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btnsignin1"
+        android:id="@+id/btnsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="35dp"
         android:backgroundTint="#009688"
-        android:text="Log in" />
+        android:text="Register" />
 
     <TextView
-        android:id="@+id/register1"
+        android:id="@+id/btnsignin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:backgroundTint="#009688"
+        android:gravity="center_horizontal"
+        android:text="Already have an Account! Log in"
+        android:textColor="#009688"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/btnshedownersignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="#009688"
         android:gravity="center_horizontal"
-        android:text="Don't have an Account! Register"
+        android:text="To Register as a shed Owner"
         android:textColor="#009688"
         android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/btnshedownersignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#009688"
+            android:gravity="center_horizontal"
+            android:text="send an email to ecogas@admin.com with all the Fuel Station Details"
+            android:textColor="#009688"
+            android:textSize="16dp" />
+
     </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
