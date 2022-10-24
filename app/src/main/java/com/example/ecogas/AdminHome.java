@@ -42,8 +42,8 @@ public class AdminHome extends AppCompatActivity {
 
         /** dding navigation to register new station in app by admin **/
         btnRegister.setOnClickListener(view -> {
-//            Intent intent = new Intent(AdminHome.this,MainActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(AdminHome.this,StationOwnerRegister.class);
+            startActivity(intent);
         });
     }
 

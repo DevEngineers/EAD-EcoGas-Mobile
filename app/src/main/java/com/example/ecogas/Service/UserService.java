@@ -20,6 +20,9 @@ public interface UserService {
     @GET("{id}")
     Call<User> getUserDetails(@Path("id") String id);
 
+    @GET("{name}")
+    Call<User> getUserDetailsByName(@Path("name") String name);
+
     @POST("user")
     Call<User> createUser(@Body User user);
 

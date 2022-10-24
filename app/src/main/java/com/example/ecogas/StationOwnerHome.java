@@ -22,7 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class StationOwnerHome extends AppCompatActivity {
     Button btnUpdateP;
     TextView name,stName,petrol,superPetrol,diesel,superDiesel,location,pQ,psQ,dQ,sdQ,pArrival,psArrival,dArrival,sdArrival;
-    String pID,p95ID,dID,sdID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +50,6 @@ public class StationOwnerHome extends AppCompatActivity {
         btnUpdateP.setOnClickListener(v -> {
             /** Redirecting to update fuel status via Intent **/
             Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", pID);
-            intent.putExtra("FUEL_NAME","Petrol");
             startActivity(intent);
         });
 
@@ -85,10 +82,6 @@ public class StationOwnerHome extends AppCompatActivity {
                     dArrival.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
                     sdArrival.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
-                    pID = station.getFuel().get(0).getId();
-                    p95ID = station.getFuel().get(1).getId();
-                    dID = station.getFuel().get(2).getId();
-                    sdID = station.getFuel().get(3).getId();
                 }
                 else{
                     Toast.makeText(StationOwnerHome.this, "Unable to get station details", Toast.LENGTH_SHORT).show();

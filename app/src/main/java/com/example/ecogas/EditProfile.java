@@ -36,7 +36,7 @@ public class EditProfile extends AppCompatActivity {
         submitEditProfile = (Button) findViewById(R.id.btnEditSubmit);
         delete = (Button) findViewById(R.id.btnDeleteuser);
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.10:29193/User/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
         UserService userService = retrofit.create(UserService.class);
         Call<User> call = userService.getUserDetails(SessionApplication.getUserID());
         call.enqueue(new Callback<User>() {

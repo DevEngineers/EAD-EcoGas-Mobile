@@ -1,4 +1,6 @@
 package com.example.ecogas.Service;
+import androidx.annotation.BinderThread;
+
 import com.example.ecogas.Model.Fuel;
 import com.example.ecogas.Model.Station;
 
@@ -18,6 +20,9 @@ public interface StationService {
 
     @GET("/owner/{id}")
     Call<Station> getStationByOwnerID(@Path("id") String id);
+
+    @POST("Station")
+    Call<Station> createNewStation(@Body Station station);
 
     @PUT("{id}")
     Call<Station> updateFuelStatus(@Path("id") String id, @Body Fuel fuel);

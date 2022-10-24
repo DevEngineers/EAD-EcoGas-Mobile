@@ -14,11 +14,14 @@
         android:theme="@style/Theme.EcoGas"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".StationOwne_Register"
+            android:name=".AdminHome"
+            android:exported="true"/>
+        <activity
+            android:name=".StationOwnerRegister"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".StationOwne_Register" />
+                android:value=".StationOwnerRegister" />
         </activity>
         <activity
             android:name=".ForgotPassword"
@@ -43,10 +46,18 @@
         </activity>
         <activity
             android:name=".UpdateFuelStatus"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UpdateFuelStatus" />
+        </activity>
         <activity
             android:name=".StationOwnerHome"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StationOwnerHome" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -45,51 +45,49 @@ public class MainActivity extends AppCompatActivity {
                 if(user_Name.equals("")||pass.equals(""))
                     Toast.makeText(MainActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 else{
-                    Boolean checkuserpass = DB.checkusernamepassword(user_Name, pass);
-                    if(checkuserpass)
-                    {
-                    User getUser=DB.getUserData(user_Name);
-                                 // API call for User
-                                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.10:29193/User/").addConverterFactory(GsonConverterFactory.create()).build();
-                                UserService userService = retrofit.create(UserService.class);
-                                Call<User> call = userService.getUserDetails(getUser.getId());
-                                call.enqueue(new Callback<User>() {
-                                    @Override
-                                    public void onResponse(Call<User> call, Response<User> response) {
-                                        if(response.isSuccessful()){
-                                            User user =response.body();
-                                            SessionApplication.setUserName(user.getUserName());
-                                            SessionApplication.setUserID(user.getId());
-                                            SessionApplication.setUserType(user.getType());
+                    Boolean checkUserPass = DB.checkUserNamePassword(user_Name, pass);
+                    if(checkUserPass) {
+                        User getUser=DB.getUserData(user_Name);
+                                     // API call for User
+                                    Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
+                                    UserService userService = retrofit.create(UserService.class);
+                                    Call<User> call = userService.getUserDetails(getUser.getId());
+                                    call.enqueue(new Callback<User>() {
+                                        @Override
+                                        public void onResponse(Call<User> call, Response<User> response) {
+                                            if(response.isSuccessful()){
+                                                User user =response.body();
+                                                SessionApplication.setUserName(user.getUserName());
+                                                SessionApplication.setUserID(user.getId());
+                                                SessionApplication.setUserType(user.getType());
 
-                                            if(user.getType().equals("User")){
-                                                Intent intent  = new Intent(getApplicationContext(), EditProfile.class);
-                                                startActivity(intent);
-                                            }
-                                            else if(user.getType().equals("StationOwner")){
-                                                Intent intent  = new Intent(getApplicationContext(), StationOwnerHome.class);
-                                                startActivity(intent);
-                                            }
-                                            else if(user.getType().equals("Admin")){
-                                                Intent intent  = new Intent(getApplicationContext(), StationOwnerHome.class);
-                                                startActivity(intent);
+                                                if(user.getType().equals("User")){
+                                                    Intent intent  = new Intent(getApplicationContext(), EditProfile.class);
+                                                    startActivity(intent);
+                                                }
+                                                else if(user.getType().equals("StationOwner")){
+                                                    Intent intent  = new Intent(getApplicationContext(), StationOwnerHome.class);
+                                                    startActivity(intent);
+                                                }
+                                                else if(user.getType().equals("Admin")){
+                                                    Intent intent  = new Intent(getApplicationContext(), AdminHome.class);
+                                                    startActivity(intent);
+                                                }
                                             }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onFailure(Call<User> call, Throwable t) {
+                                        @Override
+                                        public void onFailure(Call<User> call, Throwable t) {
 
-                                    }
-                                });
-                    }
-
-                    else{
-                        Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                    } else{
+                        checkForStationOwner(user_Name,pass);
                     }
                 }
             }
         });
+
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,5 +104,40 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+    }
+
+    private void checkForStationOwner(String name,String password) {
+        Boolean isUserCreated = DB.insertData(name,password);
+        if(isUserCreated){
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
+            UserService userService = retrofit.create(UserService.class);
+            Call<User> call = userService.getUserDetailsByName(name);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    Toast.makeText(MainActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
+                    if(response.isSuccessful()){
+                        User user = response.body();
+                        if(user.getType().equals("StationOwner")){
+                            Boolean isUserUpdated = DB.updateUserId(name,user.getId());
+                            if(isUserUpdated){
+                                Intent intent  = new Intent(getApplicationContext(), StationOwnerHome.class);
+                                startActivity(intent);
+                            }
+                        }else{
+                            Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+
+                }
+            });
+        }
     }
 }

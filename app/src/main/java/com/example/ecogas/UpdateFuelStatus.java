@@ -130,7 +130,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
                 /** Api call to update fuel status **/
                 Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
                 StationService stationService = retrofit.create(StationService.class);
-                Call<Station> call = stationService.updateFuelStatus(SessionApplication.getStationID(),fuel); //Pass Station ID as id
+                Call<Station> call = stationService.updateFuelStatus(SessionApplication.getStationID(),fuel);
                 call.enqueue(new Callback<Station>() {
                     @Override
                     public void onResponse(@NonNull Call<Station> call, @NonNull Response<Station> response) {
