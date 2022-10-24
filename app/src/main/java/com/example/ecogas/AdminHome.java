@@ -40,13 +40,17 @@ public class AdminHome extends AppCompatActivity {
 
         btnRegister = findViewById(R.id.btnRegisterStation);
 
+        /** dding navigation to register new station in app by admin **/
         btnRegister.setOnClickListener(view -> {
 //            Intent intent = new Intent(AdminHome.this,MainActivity.class);
 //            startActivity(intent);
         });
     }
 
+    /** Initializing recycle view to view all station data fetched from backend api in the screen
+     * Adding all the fetched data to arraylists to view in recycle view **/
     private void initImageBitmaps() {
+        /** Api call to retrieve all station details fuel status **/
         Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
         Call<List<Station>> call = stationService.getAllStationDetails();
@@ -72,6 +76,8 @@ public class AdminHome extends AppCompatActivity {
         });
     }
 
+    /** Setting data of all station in recycle view
+     *  initiating the recycle view **/
     private void initRecyclerView() {
         RecyclerView recyclerView =(RecyclerView) findViewById(R.id.stationViewLayout);
         AdminStationRecycleViewAdepter adapter = new AdminStationRecycleViewAdepter(stationName,ownerName,location,this);

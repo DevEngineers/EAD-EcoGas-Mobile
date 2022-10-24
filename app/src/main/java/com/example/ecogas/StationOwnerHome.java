@@ -49,13 +49,14 @@ public class StationOwnerHome extends AppCompatActivity {
         location = findViewById(R.id.location);
 
         btnUpdateP.setOnClickListener(v -> {
-            /*Redirecting to update petrol capacity from via Intent**/
+            /** Redirecting to update fuel status via Intent **/
             Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
             intent.putExtra("FUEL_ID", pID);
             intent.putExtra("FUEL_NAME","Petrol");
             startActivity(intent);
         });
 
+        /** Api call to retrieve all the details of the station **/
         Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
         Call<Station> call = stationService.getStationByOwnerID(SessionApplication.getUserID());
@@ -65,6 +66,7 @@ public class StationOwnerHome extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Station station = response.body();
 
+                    /** Setting all the fetched data in to the textViews in the screen **/
                     SessionApplication.setStationID(String.valueOf(station.getId()));
                     name.setText(String.valueOf(station.getOwnerName()));
                     stName.setText(String.valueOf(station.getStationName()));

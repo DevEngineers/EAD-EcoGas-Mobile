@@ -50,11 +50,13 @@ public class UpdateFuelStatus extends AppCompatActivity {
         Spinner fuelNameSpinner = (Spinner) findViewById(R.id.fuelSelectSpinner);
 
 
+        /** Setting data to view fuel types in spinner for select fuel type **/
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UpdateFuelStatus.this, android.R.layout.simple_spinner_item, fuelType);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fuelNameSpinner.setAdapter(arrayAdapter);
 
 
+        /** onClickListener to view date picker to set date in add date edit text field **/
         editTextAD.setOnClickListener(view -> {
             final Calendar c = Calendar.getInstance();
             DatePickerDialog.OnDateSetListener date = (view1, year, month, day) -> {
@@ -70,6 +72,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
             new DatePickerDialog(UpdateFuelStatus.this, date, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
         });
 
+        /** onClickListener to view time picker to set time in add time edit text field **/
         editTextAT.setOnClickListener(view -> {
             TimePickerDialog.OnTimeSetListener time = (view12, hourOfDay, minute) -> {
                 if(hourOfDay > 12) {
@@ -89,6 +92,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
 
         });
 
+        /** Listener to capture the selected data on spinner **/
         fuelNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -101,6 +105,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
             }
         });
 
+        /** onClickListener update the fuel status **/
         btnUpdate.setOnClickListener(view -> {
             Fuel fuel = new Fuel();
             fuel.setFuelName(fuelName);
@@ -108,6 +113,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
             fuel.setArrivalTime(editTextAT.getText().toString().trim());
             fuel.setCapacity(editTextFuelC.getText().toString().trim());
 
+            /** Validation to check the form field are empty or not when trying to update status **/
             if(fuelName.isEmpty() || fuelName.equals("Select Fuel Type")){
                 Toast.makeText(UpdateFuelStatus.this,"Select Fuel Type.. ",Toast.LENGTH_SHORT).show();
             }
@@ -121,6 +127,7 @@ public class UpdateFuelStatus extends AppCompatActivity {
                 Toast.makeText(UpdateFuelStatus.this,"Select Arrival Time.. ",Toast.LENGTH_SHORT).show();
             }
             else {
+                /** Api call to update fuel status **/
                 Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
                 StationService stationService = retrofit.create(StationService.class);
                 Call<Station> call = stationService.updateFuelStatus(SessionApplication.getStationID(),fuel); //Pass Station ID as id
