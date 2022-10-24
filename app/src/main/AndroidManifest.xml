@@ -14,26 +14,39 @@
         android:theme="@style/Theme.EcoGas"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AdminHome"
-            android:exported="true">
+            android:name=".StationOwne_Register"
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UpdateFuelStatus" />
+                android:value=".StationOwne_Register" />
+        </activity>
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ForgotPassword" />
+        </activity>
+        <activity
+            android:name=".EditProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EditProfile" />
+        </activity>
+        <activity
+            android:name=".Register"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Register" />
         </activity>
         <activity
             android:name=".UpdateFuelStatus"
-            android:exported="true">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UpdateFuelStatus" />
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".StationOwnerHome"
-            android:exported="true">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".StationOwnerHome" />
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
