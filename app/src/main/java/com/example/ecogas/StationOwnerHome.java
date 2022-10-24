@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.ecogas.Model.Station;
 import com.example.ecogas.Service.StationService;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,7 +55,7 @@ public class StationOwnerHome extends AppCompatActivity {
         /** Api call to retrieve all the details of the station **/
         Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
-        Call<Station> call = stationService.getStationByOwnerID(SessionApplication.getUserID());
+        Call<Station> call = stationService.getStationDetails(SessionApplication.getUserID());
         call.enqueue(new Callback<Station>() {
             @Override
             public void onResponse(@NonNull Call<Station> call, @NonNull Response<Station> response) {

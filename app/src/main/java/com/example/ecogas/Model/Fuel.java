@@ -11,8 +11,7 @@ public class Fuel {
     public Fuel() {
     }
 
-    public Fuel(String id, String fuelName, String capacity, String arrivalDate, String arrivalTime) {
-        this.id = id;
+    public Fuel(String fuelName, String capacity, String arrivalDate, String arrivalTime) {
         this.fuelName = fuelName;
         this.capacity = capacity;
         this.arrivalDate = arrivalDate;
