@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.example.ecogas.Model.Station;
@@ -18,7 +16,7 @@ public class ViewAllStation extends AppCompatActivity {
     public static ArrayList<Station> stationsList = new ArrayList<Station>();
 
     private ListView listView;
-
+   
     Button petrol92Btn, petrol95Btn, dieselBtn, superDieselBtn;
 
     private int white, darkGray, red;
@@ -30,9 +28,9 @@ public class ViewAllStation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_all_station);
+        setContentView(R.layout.activity_view_stations);
 
-        initSearchWidgets();
+//        initSearchWidgets();
         initWidgets();
         setUpData();
         setUpList();
@@ -66,45 +64,45 @@ public class ViewAllStation extends AppCompatActivity {
     }
 
     private void initWidgets() {
-        petrol92Btn = findViewById(R.id.petrol92Btn);
-        petrol95Btn = findViewById(R.id.petrol95Btn);
-        dieselBtn = findViewById(R.id.dieselBtn);
+//        petrol92Btn = findViewById(R.id.petrol92Btn);
+//        petrol95Btn = findViewById(R.id.petrol95Btn);
+//        dieselBtn = findViewById(R.id.dieselBtn);
         superDieselBtn = findViewById(R.id.superDieselBtn);
     }
 
-    private void initSearchWidgets() {
-        SearchView searchView = (SearchView) findViewById(R.id.shapeListSearchView);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                currentSearchText = s;
-                ArrayList<Station> filteredStations = new ArrayList<Station>();
-
-                for (Station station : stationsList) {
-                    if (station.getStationName().toLowerCase().contains(s.toLowerCase())) {
-                        if (selectedFilters.equals("all")) {
-                            filteredStations.add(station);
-                        } else {
-                            for (String filter : selectedFilters) {
-                                if (station.getStationName().toLowerCase().contains(filter)) {
-                                    filteredStations.add(station);
-                                }
-                            }
-                        }
-                    }
-                }
-                setStationAdapter(filteredStations);
-
-                return false;
-            }
-        });
-    }
+//    private void initSearchWidgets() {
+//        SearchView searchView = (SearchView) findViewById(R.id.shapeListSearchView);
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                currentSearchText = s;
+//                ArrayList<Station> filteredStations = new ArrayList<Station>();
+//
+//                for (Station station : stationsList) {
+//                    if (station.getStationName().toLowerCase().contains(s.toLowerCase())) {
+//                        if (selectedFilters.equals("all")) {
+//                            filteredStations.add(station);
+//                        } else {
+//                            for (String filter : selectedFilters) {
+//                                if (station.getStationName().toLowerCase().contains(filter)) {
+//                                    filteredStations.add(station);
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                setStationAdapter(filteredStations);
+//
+//                return false;
+//            }
+//        });
+//    }
 
     private void setUpData() {
         Station st1 = new Station("0", "IOC", "Colombo10");
@@ -201,4 +199,6 @@ public class ViewAllStation extends AppCompatActivity {
         listView.setAdapter(stationAdapter);
     }
 
+    public void searchTapped(View view) {
+    }
 }

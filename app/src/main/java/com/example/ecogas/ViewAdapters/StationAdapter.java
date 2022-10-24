@@ -23,9 +23,9 @@ public class StationAdapter extends ArrayAdapter<Station> {
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.station_cell, parent, false);
         }
-        TextView StId = convertView.findViewById(R.id.StCodeText);
         TextView StName = convertView.findViewById(R.id.StNameText);
         TextView StLocation = convertView.findViewById(R.id.StLocationText);
+        TextView StId = convertView.findViewById(R.id.StFuelText);
 
         StId.setText(station.getStationID());
         StName.setText(station.getStationName());
