@@ -26,4 +26,10 @@ public interface StationService {
 
     @PUT("{id}")
     Call<Station> updateFuelStatus(@Path("id") String id, @Body Fuel fuel);
+
+    @PUT("add/{id}")
+    Call<Station> increaseFuelQueueCount(@Path("id") String id, @Body Fuel fuel);
+
+    @PUT("remove/{id}")
+    Call<Station> decreaseFuelQueueCount(@Path("id") String id, @Body Fuel fuel);
 }

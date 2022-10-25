@@ -90,6 +90,8 @@ public class DBMaster extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
     @SuppressLint("Range")
     public User getUserData (String username)
     {

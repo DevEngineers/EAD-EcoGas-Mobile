@@ -32,5 +32,5 @@ public interface UserService {
     Call<User> updateUserDetails(@Path("id") String id, @Body User user);
 
     @DELETE("{id}")
-    void deleteUserDetails(@Path("id") String id);
+    Call<User> deleteUserDetails(@Path("id") String id);
 }

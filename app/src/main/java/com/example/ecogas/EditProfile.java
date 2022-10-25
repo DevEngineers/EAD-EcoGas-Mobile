@@ -27,6 +27,7 @@ public class EditProfile extends AppCompatActivity {
     EditText name,userName,password;
     Button submitEditProfile,delete;
     DBMaster DB;
+    User userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,13 @@ public class EditProfile extends AppCompatActivity {
         password = (EditText) findViewById(R.id.Editpassword);
         submitEditProfile = (Button) findViewById(R.id.btnEditSubmit);
         delete = (Button) findViewById(R.id.btnDeleteuser);
+        DB = new DBMaster(this);
+        userData = new User();
+
+        if(SessionApplication.getUserType().equals("Admin")){
+            delete.setVisibility(View.GONE);
+        }
+
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
         UserService userService = retrofit.create(UserService.class);
@@ -51,9 +59,12 @@ public class EditProfile extends AppCompatActivity {
                     name.setText(String.valueOf(user.getName()));
                     userName.setText(String.valueOf(user.getUserName()));
 
-                    User getUser=DB.getUserData(SessionApplication.getUserName());
+                    User getUser = DB.getUserData(user.getUserName());
                     password.setText(String.valueOf(getUser.getPassword()));
 
+                    userData.setUserName(user.getUserName());
+                    userData.setName(user.getName());
+                    userData.setPassword(getUser.getPassword());
                 }
             }
 
@@ -62,41 +73,80 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
+
         submitEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 User user = new User();
-                user.setName(name.getText().toString());
-                user.setUserName(userName.getText().toString());
-                user.setPassword(password.getText().toString());
+                user.setName(name.getText().toString().trim());
+                user.setUserName(userName.getText().toString().trim());
+                user.setPassword(password.getText().toString().trim());
 
+                if(user.getUserName().equals(userData.getUserName()) && user.getName().equals(userData.getName()) && user.getPassword().equals(userData.getPassword())){
+                    Toast.makeText(EditProfile.this, "Please update any field to update your user profile ", Toast.LENGTH_SHORT).show();
+                }else{
+                    Boolean isUpdated = DB.updateUserData(SessionApplication.getUserID(),user.getUserName(),user.getPassword());
 
-                Boolean isUpdated = DB.updateUserData(SessionApplication.getUserID(),user.getUserName(),user.getPassword());
-                if(isUpdated){
-                    user.setPassword("");
-                    Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.10:29193/User").addConverterFactory(GsonConverterFactory.create()).build();
-                    UserService userService = retrofit.create(UserService.class);
-                    Call<User> call = userService.updateUserDetails(SessionApplication.getUserID(),user);
-                    call.enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            if(response.isSuccessful()){
-                                    Toast.makeText(EditProfile.this, "User Updated Successfully", Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                                    startActivity(intent);
+                    if(isUpdated){
+                        user.setPassword("");
+                        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
+                        UserService userService = retrofit.create(UserService.class);
+                        Call<User> call = userService.updateUserDetails(SessionApplication.getUserID(),user);
+                        call.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                if(response.isSuccessful()){
+                                    if(SessionApplication.getUserType().equals("StationOwner")){
+                                        Intent intent = new Intent(getApplicationContext(), StationOwnerHome.class);
+                                        startActivity(intent);
+                                    }else if(SessionApplication.getUserType().equals("Admin")){
+                                        Intent intent = new Intent(getApplicationContext(), AdminHome.class);
+                                        startActivity(intent);
+
+                                    }else if(SessionApplication.getUserType().equals("User")) {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(EditProfile.this, "User Updated Failure", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            else{
-                                Toast.makeText(EditProfile.this, "User Updated Failure", Toast.LENGTH_SHORT).show();
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
                             }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-
-                        }
-                    });
+                        });
+                    }
                 }
 
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
+                UserService userService = retrofit.create(UserService.class);
+                Call<User> call = userService.deleteUserDetails(SessionApplication.getUserID());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.isSuccessful()){
+                            boolean isUserDeleted = DB.deleteUserData(SessionApplication.getUserName());
+                            if(isUserDeleted){
+                                Toast.makeText(EditProfile.this, "User Account is Removed", Toast.LENGTH_SHORT).show();
+                                logOut();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }
