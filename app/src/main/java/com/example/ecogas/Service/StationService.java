@@ -15,8 +15,11 @@ public interface StationService {
     @GET("Station")
     Call<List<Station>> getAllStationDetails();
 
-    @GET("{ownerID}")
-    Call<Station> getStationDetails(@Path("ownerID") String ownerID);
+    @GET("{id}")
+    Call<Station> getStationDetails(@Path("id") String id);
+
+    @GET("owner/{id}")
+    Call<Station> getStationByOwnerID(@Path("id") String id);
 
     @POST("Station")
     Call<Station> createNewStation(@Body Station station);

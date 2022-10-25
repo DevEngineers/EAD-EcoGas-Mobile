@@ -1,9 +1,13 @@
 package com.example.ecogas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
@@ -95,6 +99,54 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    /** Menu bar actions**/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_profile:
+                editProfile();
+                return true;
+            case R.id.action_logout:
+                logOut();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logOut() {
+        SessionApplication.setUserID("");
+        SessionApplication.setUserName("");
+        SessionApplication.setUserType("");
+        SessionApplication.setStationID("");
+
+        /** Redirecting to login screen after logout via Intent **/
+        Intent intent = new Intent(EditProfile.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void editProfile() {
+        /** Redirecting to edit profile via Intent **/
+        Intent intent = new Intent(EditProfile.this, EditProfile.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /** check user is log in**/
+        if(SessionApplication.getUserName().equals("")){
+            Intent intent = new Intent(EditProfile.this,MainActivity.class);
+            startActivity(intent);
+        }
 
     }
 }

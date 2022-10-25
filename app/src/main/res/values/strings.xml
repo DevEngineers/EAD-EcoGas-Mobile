@@ -37,4 +37,6 @@
     <string name="data">Date:</string>
     <string name="fuelType">Select Fuel Type:</string>
     <string name="regStationOwner">Register New Station</string>
+    <string name="log_out">Logout</string>
+    <string name="profile">Edit Profile</string>
 </resources>

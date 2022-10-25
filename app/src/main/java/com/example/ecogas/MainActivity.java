@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    Toast.makeText(MainActivity.this, String.valueOf(response.code()), Toast.LENGTH_SHORT).show();
                     if(response.isSuccessful()){
                         User user = response.body();
                         if(user.getType().equals("StationOwner")){
