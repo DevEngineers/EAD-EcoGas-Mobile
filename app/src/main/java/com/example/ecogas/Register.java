@@ -10,10 +10,8 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.ecogas.Model.Station;
 import com.example.ecogas.Model.User;
 import com.example.ecogas.Service.DBMaster;
-import com.example.ecogas.Service.StationService;
 import com.example.ecogas.Service.UserService;
 
 import retrofit2.Call;
@@ -25,9 +23,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Register extends AppCompatActivity {
 
     EditText name,userName, password, retypePassword;
-    Button signup;
+    Button signUp;
     DBMaster DB;
-    TextView signin,shedOwnerSignup;
+    TextView signIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +37,13 @@ public class Register extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         retypePassword = (EditText) findViewById(R.id.repassword);
-        signup = (Button) findViewById(R.id.btnsignup);
-        signin = (TextView) findViewById(R.id.btnsignin);
-        shedOwnerSignup = (TextView) findViewById(R.id.btnshedownersignup);//for checking
+        signUp = (Button) findViewById(R.id.btnsignup);
+        signIn = (TextView) findViewById(R.id.btnsignin);
         DB = new DBMaster(this);
-        signup.setOnClickListener(new View.OnClickListener() {
+
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//               String userName = username.getText().toString();
                 String userPassword = password.getText().toString();
                 String userRetypePassword = retypePassword.getText().toString();
 
@@ -60,23 +57,21 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(Register.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 else{
                     if(userPassword.equals(userRetypePassword)){
-                        Boolean checkuser = DB.checkusername(user.getUserName());
+                        Boolean checkUser = DB.checkUsername(user.getUserName());
 
-                        if(!checkuser){
+                        if(!checkUser){
                             Boolean insert = DB.insertData(user.getUserName(), userPassword);
 
                             if(insert){
                                 // API call for User
-                                Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.10:29193/").addConverterFactory(GsonConverterFactory.create()).build();
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
                                 UserService userService = retrofit.create(UserService.class);
-                                // create a User
                                 Call<User> call = userService.createUser(user);
                                 call.enqueue(new Callback<User>() {
                                     @Override
                                     public void onResponse(Call<User> call, Response<User> response) {
                                         if(response.isSuccessful()){
                                             User createdUser=response.body();
-//                                            Toast.makeText(Register.this, String.valueOf(createdUser.getId()), Toast.LENGTH_SHORT).show();
                                             Boolean isUserUpdated = DB.updateUserId(createdUser.getUserName(),createdUser.getId());
                                             if(isUserUpdated){
                                                 Toast.makeText(Register.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
@@ -98,7 +93,7 @@ public class Register extends AppCompatActivity {
 
                             }
                             else{
-                                Toast.makeText(Register.this, "User Registration failed2", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Register.this, "User Registration failed", Toast.LENGTH_SHORT).show();
                             }
                         }
                         //check if the user Already exist
@@ -111,17 +106,11 @@ public class Register extends AppCompatActivity {
                     }
                 } }
         });
-        signin.setOnClickListener(new View.OnClickListener() {
+
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        shedOwnerSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StationOwne_Register.class);
                 startActivity(intent);
             }
         });

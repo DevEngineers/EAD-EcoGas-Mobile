@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.ecogas.Model.User;
 
+import java.util.UUID;
+
 
 public class DBMaster extends SQLiteOpenHelper {
     public static final String DBNAME = "Login.db";
@@ -28,7 +30,7 @@ public class DBMaster extends SQLiteOpenHelper {
     public Boolean insertData(String username, String password){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
-        contentValues.put("id","ID001");
+        contentValues.put("id", UUID.randomUUID().toString());
         contentValues.put("username", username);
         contentValues.put("password", password);
         long result = MyDB.insert("users", null, contentValues);
@@ -103,7 +105,7 @@ public class DBMaster extends SQLiteOpenHelper {
     }
 
 
-    public Boolean checkusername(String username) {
+    public Boolean checkUsername(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[]{username});
         if (cursor.getCount() > 0)
@@ -111,7 +113,7 @@ public class DBMaster extends SQLiteOpenHelper {
         else
             return false;
     }
-    public Boolean checkusernamepassword(String username, String password){
+    public Boolean checkUserNamePassword(String username, String password){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
         if(cursor.getCount()>0)

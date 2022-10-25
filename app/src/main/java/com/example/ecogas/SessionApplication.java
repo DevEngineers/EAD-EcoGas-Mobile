@@ -7,8 +7,8 @@ public class SessionApplication extends Application {
     private static String userID;
     private static String userName;
     private static String userType;
-    private static String userEmail;
     private static String stationID;
+    private static String API_URL;
 
 
     @Override
@@ -17,8 +17,8 @@ public class SessionApplication extends Application {
         userID="";
         userName="";
         userType="";
-        userEmail="";
         stationID="";
+        API_URL="http://192.168.1.5:29193/";
     }
 
 
@@ -49,12 +49,13 @@ public class SessionApplication extends Application {
     public static void setUserType(String userType) {
         SessionApplication.userType = userType;
     }
+    
 
-    public static String getUserEmail() {
-        return userEmail;
+    public static String getApiUrl() {
+        return API_URL;
     }
 
-    public static void setUserEmail(String userEmail) {
-        SessionApplication.userEmail = userEmail;
+    public static void setApiUrl(String apiUrl) {
+        API_URL = apiUrl;
     }
 }
