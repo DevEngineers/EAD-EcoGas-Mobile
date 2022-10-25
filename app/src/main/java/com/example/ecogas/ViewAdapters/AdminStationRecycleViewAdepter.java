@@ -61,9 +61,8 @@ public class AdminStationRecycleViewAdepter extends RecyclerView.Adapter<AdminSt
             name=itemView.findViewById(R.id.stationViewName);
             owner=itemView.findViewById(R.id.stationViewOwner);
             location=itemView.findViewById(R.id.stationViewLocation);
-            adminStationLayout=itemView.findViewById(R.id.adminStaionViewLayout);
+            adminStationLayout=itemView.findViewById(R.id.adminStationViewLayout);
         }
-
     }
 
 }

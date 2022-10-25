@@ -4,6 +4,8 @@ import com.example.ecogas.Model.Fuel;
 import com.example.ecogas.Model.Station;
 import com.example.ecogas.Model.User;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -15,7 +17,7 @@ import retrofit2.http.Path;
 public interface UserService {
 
     @GET("user")
-    Call<User> getAllUserDetails();
+    Call<List<User>> getAllUserDetails();
 
     @GET("{id}")
     Call<User> getUserDetails(@Path("id") String id);

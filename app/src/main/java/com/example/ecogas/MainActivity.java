@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     });
                     } else{
-                        checkForStationOwner(user_Name,pass);
+                        checkOtherUsers(user_Name,pass);
                     }
                 }
             }
@@ -107,36 +107,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void checkForStationOwner(String name,String password) {
-        Boolean isUserCreated = DB.insertData(name,password);
-        if(isUserCreated){
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
-            UserService userService = retrofit.create(UserService.class);
-            Call<User> call = userService.getUserDetailsByName(name);
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    if(response.isSuccessful()){
-                        User user = response.body();
+    private void checkOtherUsers(String name,String password) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
+        UserService userService = retrofit.create(UserService.class);
+        Call<User> call = userService.getUserDetailsByName(name);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful()){
+                    User user = response.body();
+                    Boolean isUserCreated = DB.insertData(name,password);
+                    Boolean isUserUpdated = DB.updateUserId(name,user.getId());
+                    if(isUserUpdated && isUserCreated){
+                        SessionApplication.setUserName(user.getUserName());
+                        SessionApplication.setUserID(user.getId());
+                        SessionApplication.setUserType(user.getType());
+
                         if(user.getType().equals("StationOwner")){
-                            Boolean isUserUpdated = DB.updateUserId(name,user.getId());
-                            if(isUserUpdated){
-                                Intent intent  = new Intent(getApplicationContext(), StationOwnerHome.class);
-                                startActivity(intent);
-                            }
-                        }else{
-                            Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                            Intent intent  = new Intent(getApplicationContext(), StationOwnerHome.class);
+                            startActivity(intent);
+                        }else if(user.getType().equals("Admin")){
+                            Intent intent  = new Intent(getApplicationContext(), AdminHome.class);
+                            startActivity(intent);
                         }
 
-
+                    }else{
+                        Toast.makeText(MainActivity.this, "Unable to login,Try again", Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
 
-                }
-            });
-        }
+            }
+        });
     }
 }

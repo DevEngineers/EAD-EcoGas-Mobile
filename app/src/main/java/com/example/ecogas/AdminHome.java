@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ecogas.Model.Station;
@@ -30,65 +31,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AdminHome extends AppCompatActivity {
 
-    Button btnRegister;
-
-    private ArrayList<String> stationName = new ArrayList<>();
-    private ArrayList<String> ownerName = new ArrayList<>();
-    private ArrayList<String> location = new ArrayList<>();
+    Button btnRegister,btnStation,btnUsers;
+    TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        initImageBitmaps();
 
         btnRegister = findViewById(R.id.btnRegisterStation);
+        btnStation = findViewById(R.id.btnStation);
+        btnUsers = findViewById(R.id.btnUsers);
+        name = findViewById(R.id.adminName);
+
+        name.setText(new StringBuilder().append("Welcome").append(" ").append((SessionApplication.getUserName())));
 
         /** dding navigation to register new station in app by admin **/
         btnRegister.setOnClickListener(view -> {
             Intent intent = new Intent(AdminHome.this,StationOwnerRegister.class);
             startActivity(intent);
         });
-    }
 
-    /** Initializing recycle view to view all station data fetched from backend api in the screen
-     * Adding all the fetched data to arraylists to view in recycle view **/
-    private void initImageBitmaps() {
-        /** Api call to retrieve all station details fuel status **/
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
-        StationService stationService = retrofit.create(StationService.class);
-        Call<List<Station>> call = stationService.getAllStationDetails();
-        call.enqueue(new Callback<List<Station>>() {
-            @Override
-            public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
-                if(response.isSuccessful()) {
-                    List<Station> stations = response.body();
-                    for (Station station: stations){
-                        stationName.add(station.getStationName());
-                        ownerName.add(station.getOwnerName());
-                        location.add(station.getLocation());
-                        initRecyclerView();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Station>> call, Throwable t) {
-
-            }
+        /** dding navigation to view all station in the app **/
+        btnStation.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminHome.this,AdminViewStations.class);
+            startActivity(intent);
         });
-    }
 
-    /** Setting data of all station in recycle view
-     *  initiating the recycle view **/
-    private void initRecyclerView() {
-        RecyclerView recyclerView =(RecyclerView) findViewById(R.id.stationViewLayout);
-        AdminStationRecycleViewAdepter adapter = new AdminStationRecycleViewAdepter(stationName,ownerName,location,this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+        /** dding navigation to view all users in the app **/
+        btnUsers.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminHome.this,AdminViewUsers.class);
+            startActivity(intent);
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

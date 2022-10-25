@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/update_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/head_text"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"

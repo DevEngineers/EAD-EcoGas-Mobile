@@ -8,7 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_button">#009688</color>
-    <color name="secondary_button">#584c54</color>
+    <color name="secondary_button">#f06c64</color>
     <color name="tile_color">#d4d4d4</color>
     <color name="status_bar">#009688</color>
+    <color name="head_text">#009688</color>
 </resources>

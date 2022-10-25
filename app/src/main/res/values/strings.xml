@@ -39,4 +39,6 @@
     <string name="regStationOwner">Register New Station</string>
     <string name="log_out">Logout</string>
     <string name="profile">Edit Profile</string>
+    <string name="viewAllStations">View All Stations</string>
+    <string name="viewAllUsers">View All Users</string>
 </resources>
