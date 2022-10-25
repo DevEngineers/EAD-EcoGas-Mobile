@@ -123,6 +123,32 @@ public class EditProfile extends AppCompatActivity {
 
             }
         });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
+                UserService userService = retrofit.create(UserService.class);
+                Call<User> call = userService.deleteUserDetails(SessionApplication.getUserID());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.isSuccessful()){
+                            boolean isUserDeleted = DB.deleteUserData(SessionApplication.getUserName());
+                            if(isUserDeleted){
+                                Toast.makeText(EditProfile.this, "User Account is Removed", Toast.LENGTH_SHORT).show();
+                                logOut();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
