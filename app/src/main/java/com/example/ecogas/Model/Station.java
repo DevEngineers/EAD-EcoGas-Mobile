@@ -1,5 +1,11 @@
 package com.example.ecogas.Model;
 
+/**
+ * Station Model Class
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 import java.util.ArrayList;
 
 public class Station {

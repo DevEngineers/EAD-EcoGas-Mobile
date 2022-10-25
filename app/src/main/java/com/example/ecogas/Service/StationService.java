@@ -10,6 +10,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+/**
+ * This interface is to call ecogas rest api http methods in the backend api
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public interface StationService {
 
     @GET("Station")

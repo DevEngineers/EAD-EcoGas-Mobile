@@ -35,6 +35,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is UpdateFuelStatus screen java file to provide logic activity_update_fuel_status layout xml
+ * This screen is to update fuel status in a station by the station owner
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class UpdateFuelStatus extends AppCompatActivity {
     Button btnUpdate;
     TextView editTextAD,editTextAT,editTextFuelC;
