@@ -32,6 +32,7 @@
     <string name="updateD">Update Diesel Status</string>
     <string name="location">Location:</string>
     <string name="s_location">TextView</string>
+    <string name="st_location">Station Location:</string>
     <string name="superDiesel">Super Diesel:</string>
     <string name="updateSD">Update Super Diesel Status</string>
     <string name="data">Date:</string>
