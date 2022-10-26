@@ -31,10 +31,15 @@
     <string name="updateP">Update Petrol Status</string>
     <string name="updateD">Update Diesel Status</string>
     <string name="location">Location:</string>
-    <string name="s_location">TextView</string>
+updated     <string name="s_location">Location</string>
+    <string name="st_location">Station Location:</string>
     <string name="superDiesel">Super Diesel:</string>
     <string name="updateSD">Update Super Diesel Status</string>
     <string name="data">Date:</string>
     <string name="search">Search</string>
     <string name="fuel_type">Fuel Type</string>
+    <string name="textview">TextView</string>
+    <string name="queue_line_number">Queue Line Number:</string>
+    <string name="joined_queue">Joined Queue</string>
+
 </resources>
