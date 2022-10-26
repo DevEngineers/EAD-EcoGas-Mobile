@@ -31,6 +31,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is Station Owner Registration screen java file to provide logic to activity_station_owner_register layout xml
+ * This screen is to Register a new Station Owner and give option to navigate to login Screen after Station Owner is successfully registered .
+ *
+ * Author: IT19167442 Nusky M.A.M
+ */
+
 public class StationOwnerRegister extends AppCompatActivity {
     EditText name,userName, password, reTypePassword, location,stationName;
     Button signUp;
@@ -62,9 +69,11 @@ public class StationOwnerRegister extends AppCompatActivity {
                 shedOwner.setName(name.getText().toString());
                 shedOwner.setType("StationOwner");
 
+                /** Validation to check  if the Station Owner Registration form fields are empty or not when trying to  Register **/
                 if (shedOwner.getUserName().equals("") || shedOwnerPassword.equals("") || shedOwnerTypePassword.equals(""))
                     Toast.makeText(StationOwnerRegister.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 else {
+                    /** Api call to User **/
                     Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
                     UserService userService = retrofit.create(UserService.class);
                     Call<User> call = userService.createUser(shedOwner);
