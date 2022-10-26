@@ -16,31 +16,30 @@
             android:id="@+id/StNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_station"
             android:text="@string/station_name"
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:padding="5dp"/>
-
+        <TextView
+            android:id="@+id/stID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textview"
+            android:visibility="invisible"/>
         <TextView
             android:id="@+id/StLocationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/location"
+            android:drawableStart="@drawable/ic_location"
+            android:text="@string/s_location"
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginStart="10dp"
             android:padding="5dp" />
 
-        <TextView
-            android:id="@+id/StFuelText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fuel_type"
-            android:textSize="15sp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:padding="5dp" />
+
 
     </LinearLayout>
 
