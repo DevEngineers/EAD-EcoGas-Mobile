@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ViewAllStation">
+    tools:context=".ViewStations">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,52 +15,108 @@
             android:layout_margin="10dp"
             android:id="@+id/searchTabsLayout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+            <Spinner
+                android:id="@+id/spinnerLocation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/location"
-                app:startIconDrawable="@drawable/ic_location">
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="24dp"/>
 
-                <AutoCompleteTextView
-                    android:id="@+id/spinnerLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/location"
-                    android:inputType="none"
-                    android:textColorHint="#757575" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/fuel_type"
-                app:startIconDrawable="@drawable/ic_station">
-
-                <AutoCompleteTextView
-                    android:id="@+id/spinnerType"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/fuel_type"
-                    android:inputType="none"
-                    android:textColorHint="#757575" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            </LinearLayout>-->
 
             <Button
-                android:id="@+id/superDieselBtn"
+                android:id="@+id/searchBtn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/teal_700"
-                android:onClick="searchTapped"
-                android:text="@string/search"
-                tools:ignore="TextContrastCheck" />
+                android:text="@string/search" />
 
         </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/joinedQueueLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="@color/tile_color"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/joined_queue"
+            android:textAlignment="center"
+            android:padding="5dp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/stNameQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textview" />
+
+            <TextView
+                android:id="@+id/fuelTypeQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/ic_station"
+                android:text="@string/textview" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/queue_line_number" />
+
+            <TextView
+                android:id="@+id/noQueueQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/textview" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Joined Time: " />
+
+            <TextView
+                android:id="@+id/jointTimeQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/textview" />
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Remove Queue"
+            android:gravity="center" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/stationsListView"
