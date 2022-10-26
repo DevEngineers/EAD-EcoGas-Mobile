@@ -49,5 +49,6 @@
     <string name="joined_queue">Joined Queue</string>
     <string name="remove_queue">Remove Queue</string>
     <string name="add_queue">Add Queue</string>
+    <string name="joined_time">Joined Time:</string>
 
 </resources>
