@@ -67,11 +67,7 @@
         </activity>
         <activity
             android:name=".StationOwnerHome"
-            android:exported="true">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".StationOwnerHome" />
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ViewStations"
             android:exported="true">
