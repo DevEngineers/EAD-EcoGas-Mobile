@@ -23,6 +23,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is EditProfile and Delete User Account screen java file to provide logic to activity_edit_profile layout xml
+ * This screen is to Update UserDetails and Delete USer Account and give the option to navigate to login Screen after User is successfully Updated or Deleted.
+ *
+ * Author: IT19167442 Nusky M.A.M
+ */
+
 public class EditProfile extends AppCompatActivity {
     EditText name,userName,password;
     Button submitEditProfile,delete;
@@ -124,6 +131,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        /** Delete User Account**/
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

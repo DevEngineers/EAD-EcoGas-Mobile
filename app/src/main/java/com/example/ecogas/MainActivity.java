@@ -18,6 +18,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is  Login screen java file to provide logic to activity_main layout xml
+ * This screen is to login to the application according to the user types, user will navigate
+ * to their particular home Screens According to the type of the user after after User is successfully registered .
+ *
+ * Author: IT19167442 Nusky M.A.M
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     EditText userName, password;
@@ -35,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         final TextView forgotPassword = (TextView) findViewById(R.id.forgotPassword1);
         final TextView signup = (TextView) findViewById(R.id.register1);
         DB = new DBMaster(this);
+
+        /** check user Login **/
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,13 +52,15 @@ public class MainActivity extends AppCompatActivity {
                 String user_Name = userName.getText().toString();
                 String pass = password.getText().toString();
 
+                /** Validation to check  if the login form fields are empty or not when trying to Login **/
                 if(user_Name.equals("")||pass.equals(""))
                     Toast.makeText(MainActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
                 else{
                     Boolean checkUserPass = DB.checkUserNamePassword(user_Name, pass);
                     if(checkUserPass) {
                         User getUser=DB.getUserData(user_Name);
-                                     // API call for User
+
+                        /** Api call to user **/
                                     Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
                                     UserService userService = retrofit.create(UserService.class);
                                     Call<User> call = userService.getUserDetails(getUser.getId());
@@ -61,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
                                                 SessionApplication.setUserID(user.getId());
                                                 SessionApplication.setUserType(user.getType());
 
+                                                /** check the User type  and redirecting the users to their home Screens according to their type
+                                                 * if the user is station Owner redirecting the station owner to station owner Home Screen
+                                                 * if the user is Admin redirecting Admin to the Admin Home Screen
+                                                 *   * if the user is Normal User redirecting User to the User Profile Screen
+                                                 * **/
                                                 if(user.getType().equals("User")){
                                                     Intent intent  = new Intent(getApplicationContext(), ViewStations.class);
                                                     startActivity(intent);
@@ -88,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        /** Redirecting to ForgotPassword Screen via Intent **/
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        /** Redirecting to register Screen via Intent **/
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkOtherUsers(String name,String password) {
+        /** Api call to user **/
         Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "User/").addConverterFactory(GsonConverterFactory.create()).build();
         UserService userService = retrofit.create(UserService.class);
         Call<User> call = userService.getUserDetailsByName(name);

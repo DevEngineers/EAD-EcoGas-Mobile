@@ -24,13 +24,13 @@ public class AdminUsersRecycleViewAdapter extends RecyclerView.Adapter<AdminUser
 
     private ArrayList<String> user = new ArrayList<>();
     private ArrayList<String> userName = new ArrayList<>();
-
-
+    private ArrayList<String> userType = new ArrayList<>();
     private Context mContext;
 
-    public AdminUsersRecycleViewAdapter(ArrayList<String> user, ArrayList<String> userName, Context mContext) {
+    public AdminUsersRecycleViewAdapter(ArrayList<String> user, ArrayList<String> userName, ArrayList<String> userType, Context mContext) {
         this.user = user;
         this.userName = userName;
+        this.userType = userType;
         this.mContext = mContext;
     }
 
@@ -47,6 +47,7 @@ public class AdminUsersRecycleViewAdapter extends RecyclerView.Adapter<AdminUser
 
         holder.name.setText(user.get(position));
         holder.userNameView.setText(userName.get(position));
+        holder.userTypeView.setText(userType.get(position));
     }
 
     @Override
@@ -55,13 +56,14 @@ public class AdminUsersRecycleViewAdapter extends RecyclerView.Adapter<AdminUser
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name,userNameView;
+        TextView name,userNameView,userTypeView;
         RelativeLayout adminUserViewLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.userViewName);
             userNameView=itemView.findViewById(R.id.userViewUserName);
+            userTypeView = itemView.findViewById(R.id.userType);
             adminUserViewLayout=itemView.findViewById(R.id.adminUserViewLayout);
         }
 

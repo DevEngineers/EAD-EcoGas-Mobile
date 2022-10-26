@@ -1,6 +1,10 @@
 package com.example.ecogas.Model;
 
-import java.util.ArrayList;
+/**
+ * User Model Class
+ *
+ * Author: IT19167442 Nusky M.A.M
+ */
 
 public class User {
 
@@ -9,7 +13,6 @@ public class User {
     private String userName;
     private String type;
     private String password;
-
 
     public User() {
     }

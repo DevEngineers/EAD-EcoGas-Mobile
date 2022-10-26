@@ -15,10 +15,18 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".AdminViewUsers"
-            android:exported="true" />
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AdminViewUsers" />
+        </activity>
         <activity
             android:name=".AdminViewStations"
-            android:exported="true" />
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AdminViewStations" />
+        </activity>
         <activity
             android:name=".AdminHome"
             android:exported="true" />
