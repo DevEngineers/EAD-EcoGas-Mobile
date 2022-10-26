@@ -1,14 +1,12 @@
 package com.example.ecogas;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,16 +27,19 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Author: IT19175126 Zumry A.M
+ */
+
 public class ViewStations extends AppCompatActivity {
 
     public static ArrayList<Station> stationsList = new ArrayList<Station>();
     List<String> locationList = new ArrayList<String>();
-    List<String> fuelType = Arrays.asList("Select Fuel Type","Kandy","SuperPetrol","Diesel","SuperDiesel");
     String selectedLocation;
     private ListView listView;
     TextView StNameQ, FuelTypeQ, noQueue, TimeQ;
     LinearLayout joinedQueueLayout;
-    Button btnSearch;
+    Button btnSearch, btnRemoveQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +52,18 @@ public class ViewStations extends AppCompatActivity {
         FuelTypeQ = findViewById(R.id.fuelTypeQ);
         noQueue = findViewById(R.id.noQueueQ);
         TimeQ = findViewById(R.id.jointTimeQ);
-        Spinner fuelLocationSpinner = (Spinner) findViewById(R.id.spinnerLocation);
-
+        btnRemoveQueue = findViewById(R.id.removeQueueBtn);
+        Spinner fuelLocationSpinner = findViewById(R.id.spinnerLocation);
 
         initImageBitmaps();
 
-        if(!checkUserJoinedQueue()){
+        if(checkUserJoinedQueue()){
             joinedQueueLayout.setVisibility(View.GONE);
         }
-        Toast.makeText(this,  "Boolean .. :"+String.valueOf(checkUserJoinedQueue()), Toast.LENGTH_SHORT).show();
-
 
          /** Setting data to view fuel types in spinner for select fuel type **/
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ViewStations.this, android.R.layout.simple_dropdown_item_1line, locationList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ViewStations.this, android.R.layout.simple_spinner_item, locationList);
+        fuelLocationSpinner.setPrompt("Location");
         arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         fuelLocationSpinner.setAdapter(arrayAdapter);
 
@@ -91,25 +91,56 @@ public class ViewStations extends AppCompatActivity {
             }
         });
 
+        btnRemoveQueue.setOnClickListener(v -> {
+            Toast.makeText(this, "on Btn Remove" , Toast.LENGTH_SHORT).show();
+
+        });
+
 
     }
 
     private boolean checkUserJoinedQueue() {
         final boolean[] isExist = {false};
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.100:29193/Queue/").addConverterFactory(GsonConverterFactory.create()).build();
+        /** Api call to retrieve the details of the Queue by User ID**/
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()+"Queue/").addConverterFactory(GsonConverterFactory.create()).build();
         QueueService queueService = retrofit.create(QueueService.class);
-        Call<Queues> call = queueService.getQueueDetails(SessionApplication.getUserID());
+        Call<Queues> call = queueService.getQueueByUserID(SessionApplication.getUserID());
         call.enqueue(new Callback<Queues>() {
             @Override
-            public void onResponse(Call<Queues> call, Response<Queues> response) {
-                if(response.isSuccessful()){
+            public void onResponse(Call<Queues> queuesCall, Response<Queues> queuesResponse) {
+                if(queuesResponse.isSuccessful()){
                     isExist[0] = true;
+                    Queues queues = queuesResponse.body();
+
+                    /** Api call to retrieve the details of the station by station ID**/
+                    Retrofit retrofit2 = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()+"Station/").addConverterFactory(GsonConverterFactory.create()).build();
+                    StationService stationService = retrofit2.create(StationService.class);
+                    Call<Station> call2 = stationService.getStationDetails(queues.getStationID());
+                    call2.enqueue(new Callback<Station>() {
+                        @Override
+                        public void onResponse(Call<Station> stationCall, Response<Station> stationResponse) {
+                            if(stationResponse.isSuccessful()){
+                                Station st = stationResponse.body();
+
+                                /** Setting all the fetched data in to the textViews in the screen **/
+                                StNameQ.setText(st.getStationName());
+                                FuelTypeQ.setText(String.valueOf(queues.getFuelName()));
+                                noQueue.setText(String.valueOf(st.getSuperDieselQueue()));
+                                TimeQ.setText(String.valueOf(queues.getArrivalTime()));
+                            }else{
+                                Toast.makeText(ViewStations.this, "Unable to get station details", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<Station> stationCall, Throwable t) {
+                        }
+                    });
                 }else{
                     isExist[0] = false;
                 }
             }
             @Override
-            public void onFailure(Call<Queues> call, Throwable t) {
+            public void onFailure(Call<Queues> queuesCall, Throwable throwable) {
 
             }
         });
@@ -117,7 +148,7 @@ public class ViewStations extends AppCompatActivity {
     }
 
     private void initImageBitmaps() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.8.100:29193/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
         Call<List<Station>> call = stationService.getAllStationDetails();
         call.enqueue(new Callback<List<Station>>() {
@@ -133,7 +164,6 @@ public class ViewStations extends AppCompatActivity {
                         stationsList.add(St01);
                         locationList.add(st.getLocation());
                     }
-                    Log.d("TAG","locationList............................................ . " +locationList );
                     listView = (ListView) findViewById(R.id.stationsListView);
                     StationListViewAdapter stationListViewAdapter = new StationListViewAdapter(getApplicationContext(), 0, stationsList);
                     listView.setAdapter(stationListViewAdapter);
@@ -142,7 +172,6 @@ public class ViewStations extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                             Station selectStation = (Station) (listView.getItemAtPosition(position));
-                            Log.d("TAG","000000000000000000000000 000000000..........................." + selectStation.getId());
                             Intent showDetail = new Intent(getApplicationContext(), DetailStation.class);
                             showDetail.putExtra("id", selectStation.getId());
                             startActivity(showDetail);
@@ -163,7 +192,5 @@ public class ViewStations extends AppCompatActivity {
 
     }
 
-
-
-
+    
 }
