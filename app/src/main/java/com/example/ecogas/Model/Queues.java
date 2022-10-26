@@ -1,5 +1,12 @@
 package com.example.ecogas.Model;
 
+/**
+ * Fuel Model Class
+ *
+ * @Author: IT19175126 Zumry A.M
+ */
+
+
 public class Queues {
 
     private String id;
