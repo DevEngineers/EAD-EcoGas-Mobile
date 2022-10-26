@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
@@ -16,12 +17,12 @@
             android:id="@+id/StNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_station"
             android:text="@string/station_name"
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginStart="10dp"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            app:drawableStartCompat="@drawable/ic_station" />
         <TextView
             android:id="@+id/stID"
             android:layout_width="wrap_content"
@@ -32,14 +33,12 @@
             android:id="@+id/StLocationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_location"
             android:text="@string/s_location"
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginStart="10dp"
-            android:padding="5dp" />
-
-
+            android:padding="5dp"
+            app:drawableStartCompat="@drawable/ic_location" />
 
     </LinearLayout>
 
