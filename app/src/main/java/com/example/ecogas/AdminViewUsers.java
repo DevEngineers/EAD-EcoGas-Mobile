@@ -39,11 +39,13 @@ public class AdminViewUsers extends AppCompatActivity {
 
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<String> userName = new ArrayList<>();
+    private ArrayList<String> userType = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_view_users);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initImageBitmaps();
     }
 
@@ -65,6 +67,7 @@ public class AdminViewUsers extends AppCompatActivity {
                         if(!user.getType().equals("Admin")) {
                             name.add(user.getName());
                             userName.add(user.getUserName());
+                            userType.add(user.getType());
                             initRecyclerView();
                         }
                     }
@@ -84,7 +87,7 @@ public class AdminViewUsers extends AppCompatActivity {
      **/
     private void initRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.usersViewLayout);
-        AdminUsersRecycleViewAdapter adapter = new AdminUsersRecycleViewAdapter(name,userName,this);
+        AdminUsersRecycleViewAdapter adapter = new AdminUsersRecycleViewAdapter(name,userName,userType,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
