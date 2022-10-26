@@ -11,27 +11,58 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.EcoGas">
+        android:theme="@style/Theme.EcoGas"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ViewStations"
-            android:exported="true">
+            android:name=".AdminViewUsers"
+            android:exported="true" />
+        <activity
+            android:name=".AdminViewStations"
+            android:exported="true" />
+        <activity
+            android:name=".AdminHome"
+            android:exported="true" />
+        <activity
+            android:name=".StationOwnerRegister"
+            android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StationOwnerRegister" />
         </activity>
-
         <activity
-            android:name=".DetailStation"
-            android:exported="true" >
+            android:name=".ForgotPassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ForgotPassword" />
+        </activity>
+        <activity
+            android:name=".EditProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EditProfile" />
+        </activity>
+        <activity
+            android:name=".Register"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Register" />
         </activity>
         <activity
             android:name=".UpdateFuelStatus"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UpdateFuelStatus" />
+        </activity>
         <activity
             android:name=".StationOwnerHome"
-            android:exported="true" >
-
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StationOwnerHome" />
         </activity>
         <activity
             android:name=".MainActivity"

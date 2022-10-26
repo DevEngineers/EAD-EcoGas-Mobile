@@ -12,9 +12,9 @@
     <string name="owner_name">TextView</string>
     <string name="petrol92q">TextView</string>
     <string name="p95_arr">TextView</string>
-    <string name="number_of_vehicles_in_queue">Vehicles in queue</string>
+    <string name="number_of_vehicles_in_queue">Vehicles in Queue</string>
     <string name="p92_arr">TextView</string>
-    <string name="update_status">Update Status</string>
+    <string name="update_status">Update Fuel Status</string>
     <string name="d_arr">TextView</string>
     <string name="diesel_fuel">TextView</string>
     <string name="fuel_arriving_time">Fuel Arriving Time</string>
@@ -23,23 +23,22 @@
     <string name="fuel">Fuel</string>
     <string name="dieselq">TextView</string>
     <string name="arrival">Arrival Time</string>
-    <string name="date">Add Date</string>
-    <string name="time">Add Time</string>
+    <string name="date">Add Date:</string>
+    <string name="time">Add Time:</string>
     <string name="update">Update Status</string>
-    <string name="cap">Capacity (ltr)</string>
+    <string name="cap">Capacity (ltr):</string>
     <string name="updateSP">Update Super Petrol Status</string>
     <string name="updateP">Update Petrol Status</string>
     <string name="updateD">Update Diesel Status</string>
     <string name="location">Location:</string>
-updated     <string name="s_location">Location</string>
-    <string name="st_location">Station Location:</string>
+    <string name="s_location">TextView</string>
     <string name="superDiesel">Super Diesel:</string>
     <string name="updateSD">Update Super Diesel Status</string>
     <string name="data">Date:</string>
-    <string name="search">Search</string>
-    <string name="fuel_type">Fuel Type</string>
-    <string name="textview">TextView</string>
-    <string name="queue_line_number">Queue Line Number:</string>
-    <string name="joined_queue">Joined Queue</string>
-
+    <string name="fuelType">Select Fuel Type:</string>
+    <string name="regStationOwner">Register New Station</string>
+    <string name="log_out">Logout</string>
+    <string name="profile">Edit Profile</string>
+    <string name="viewAllStations">View All Stations</string>
+    <string name="viewAllUsers">View All Users</string>
 </resources>

@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,27 +15,30 @@ import android.widget.Toast;
 import com.example.ecogas.Model.Station;
 import com.example.ecogas.Service.StationService;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is StationOwnerHome screen java file to provide logic activity_station_owner_home layout xml
+ * This screen is to display the station details to owner and give option to navigate to update fuel status details
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class StationOwnerHome extends AppCompatActivity {
-    Button btnUpdateP,btnUpdateSP,btnUpdateD,btnUpdateSD;
+    Button btnUpdateP;
     TextView name,stName,petrol,superPetrol,diesel,superDiesel,location,pQ,psQ,dQ,sdQ,pArrival,psArrival,dArrival,sdArrival;
-    String pID,p95ID,dID,sdID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_owner_home);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnUpdateP=findViewById(R.id.updateP);
-        btnUpdateSP=findViewById(R.id.updateSuperP);
-        btnUpdateD=findViewById(R.id.updateD);
-        btnUpdateSD = findViewById(R.id.updateSD);
 
         name = findViewById(R.id.ownerName);
         stName = findViewById(R.id.stName);
@@ -51,38 +57,13 @@ public class StationOwnerHome extends AppCompatActivity {
         location = findViewById(R.id.location);
 
         btnUpdateP.setOnClickListener(v -> {
-            /*Redirecting to update petrol capacity from via Intent**/
+            /** Redirecting to update fuel status via Intent **/
             Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", pID);
-            intent.putExtra("FUEL_NAME","Petrol");
             startActivity(intent);
         });
 
-        btnUpdateSP.setOnClickListener(v -> {
-            /*Redirecting to update super petrol capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", p95ID);
-            intent.putExtra("FUEL_NAME","SuperPetrol");
-            startActivity(intent);
-        });
-
-        btnUpdateD.setOnClickListener(v -> {
-            /*Redirecting to update diesel capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", dID);
-            intent.putExtra("FUEL_NAME","Diesel");
-            startActivity(intent);
-        });
-
-        btnUpdateSD.setOnClickListener(v -> {
-            /*Redirecting to update diesel capacity from via Intent**/
-            Intent intent = new Intent(StationOwnerHome.this, UpdateFuelStatus.class);
-            intent.putExtra("FUEL_ID", sdID);
-            intent.putExtra("FUEL_NAME","SuperDiesel");
-            startActivity(intent);
-        });
-
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.5:29193/Station/").addConverterFactory(GsonConverterFactory.create()).build();
+        /** Api call to retrieve all the details of the station **/
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
         StationService stationService = retrofit.create(StationService.class);
         Call<Station> call = stationService.getStationByOwnerID(SessionApplication.getUserID());
         call.enqueue(new Callback<Station>() {
@@ -91,6 +72,8 @@ public class StationOwnerHome extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Station station = response.body();
 
+                    /** Setting all the fetched data in to the textViews in the screen **/
+                    SessionApplication.setStationID(String.valueOf(station.getId()));
                     name.setText(String.valueOf(station.getOwnerName()));
                     stName.setText(String.valueOf(station.getStationName()));
                     petrol.setText(String.valueOf(station.getFuel().get(0).getCapacity()));
@@ -108,14 +91,10 @@ public class StationOwnerHome extends AppCompatActivity {
                     dArrival.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
                     sdArrival.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
-                    pID = station.getFuel().get(0).getId();
-                    p95ID = station.getFuel().get(1).getId();
-                    dID = station.getFuel().get(2).getId();
-                    sdID = station.getFuel().get(3).getId();
                 }
-//                else{
-//                    Toast.makeText(StationOwnerHome.this, "ERROR", Toast.LENGTH_SHORT).show();
-//                }
+                else{
+                    Toast.makeText(StationOwnerHome.this, "Unable to get station details", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -124,4 +103,55 @@ public class StationOwnerHome extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    /** Menu bar actions**/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_profile:
+                editProfile();
+                return true;
+            case R.id.action_logout:
+                logOut();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logOut() {
+        SessionApplication.setUserID("");
+        SessionApplication.setUserName("");
+        SessionApplication.setUserType("");
+        SessionApplication.setStationID("");
+
+        /** Redirecting to login screen after logout via Intent **/
+        Intent intent = new Intent(StationOwnerHome.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void editProfile() {
+        /** Redirecting to edit profile via Intent **/
+        Intent intent = new Intent(StationOwnerHome.this, EditProfile.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /** check user is log in**/
+        if(SessionApplication.getUserName().equals("")){
+            Intent intent = new Intent(StationOwnerHome.this,MainActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
+
 }

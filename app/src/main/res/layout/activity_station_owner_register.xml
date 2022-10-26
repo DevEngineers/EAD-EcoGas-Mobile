@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".MainActivity">
+    tools:context=".StationOwnerRegister">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,73 +18,69 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/loginTitle"
+            android:id="@+id/stationOwnerRegisterTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
-            android:text="Login"
+            android:text="Register Station"
             android:textColor="#009688"
             android:textSize="30dp"
             android:textStyle="bold|italic" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="15dp"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:src="@drawable/fuel"
-        android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/username1"
+        android:id="@+id/stationOwnername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="35dp"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/shedName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:hint="Station Name" />
+
+    <EditText
+        android:id="@+id/shedLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:hint="Station Location" />
+
+    <EditText
+        android:id="@+id/shedOwnerUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:hint="User Name" />
 
     <EditText
-        android:id="@+id/password1"
+        android:id="@+id/shedOwnerPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/forgotPassword1"
+    <EditText
+        android:id="@+id/shedOwnerepassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="34dp"
-        android:gravity="center_horizontal"
-        android:text="Forgot Password?"
-        android:textColor="#009688"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:layout_marginTop="25dp"
+        android:hint="Reenter Password"
+        android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btnsignin1"
+        android:id="@+id/shedOwnerbtnsignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="35dp"
         android:backgroundTint="#009688"
-        android:text="Log in" />
+        android:text="Register" />
 
-        <TextView
-            android:id="@+id/register1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#009688"
-            android:gravity="center_horizontal"
-            android:text="Don't have an Account! Register"
-            android:textColor="#009688"
-            android:textSize="16dp"
-            android:textStyle="italic" />
     </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
