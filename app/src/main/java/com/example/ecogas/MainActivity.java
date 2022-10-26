@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                                  *   * if the user is Normal User redirecting User to the User Profile Screen
                                                  * **/
                                                 if(user.getType().equals("User")){
-                                                    Intent intent  = new Intent(getApplicationContext(), EditProfile.class);
+                                                    Intent intent  = new Intent(getApplicationContext(), ViewStations.class);
                                                     startActivity(intent);
                                                 }
                                                 else if(user.getType().equals("StationOwner")){
