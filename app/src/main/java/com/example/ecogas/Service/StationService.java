@@ -1,12 +1,8 @@
 package com.example.ecogas.Service;
-import androidx.annotation.BinderThread;
 
 import com.example.ecogas.Model.Fuel;
 import com.example.ecogas.Model.Station;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -25,6 +21,9 @@ public interface StationService {
 
     @GET("owner/{id}")
     Call<Station> getStationByOwnerID(@Path("id") String id);
+
+    @GET("location/{id}")
+    Call<List<Station>> getStationByLocation(@Path("id") String id);
 
     @POST("Station")
     Call<Station> createNewStation(@Body Station station);
