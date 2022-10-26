@@ -11,6 +11,13 @@ import com.example.ecogas.Model.Station;
 import com.example.ecogas.R;
 import java.util.List;
 
+/**
+ * This adapter class is to set and initiate the station details in List view to view in ViewStations screen
+ *
+ * Author: IT19175126 Zumry A.M
+ */
+
+
 public class StationListViewAdapter extends ArrayAdapter<Station> {
 
     public StationListViewAdapter(Context context, int resource, List<Station> stationsList) {
@@ -31,7 +38,6 @@ public class StationListViewAdapter extends ArrayAdapter<Station> {
         StName.setText(station.getStationName());
         StLocation.setText(station.getLocation());
         StID.setText(station.getId());
-        Log.d("TAG","Atepter............................................ . " +station.getOwnerName() );
 
         return convertView;
     }
