@@ -47,5 +47,7 @@
     <string name="textview">TextView</string>
     <string name="queue_line_number">Queue Line Number:</string>
     <string name="joined_queue">Joined Queue</string>
+    <string name="remove_queue">Remove Queue</string>
+    <string name="add_queue">Add Queue</string>
 
 </resources>
