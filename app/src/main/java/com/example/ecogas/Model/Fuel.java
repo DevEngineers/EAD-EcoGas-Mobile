@@ -1,5 +1,11 @@
 package com.example.ecogas.Model;
 
+/**
+ * Fuel Model Class
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class Fuel {
 
     private String id;

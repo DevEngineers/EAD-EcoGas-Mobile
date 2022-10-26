@@ -25,6 +25,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is AdminViewStation screen java file to provide logic activity_admin_view_stations layout xml
+ * This screen is to display all the station details to admin
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class AdminViewStations extends AppCompatActivity {
 
     private ArrayList<String> stationName = new ArrayList<>();

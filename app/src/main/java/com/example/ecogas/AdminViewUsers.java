@@ -28,6 +28,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is AdminViewUsers screen java file to provide logic activity_admin_view_users layout xml
+ * This screen is to display all the users details to admin
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class AdminViewUsers extends AppCompatActivity {
 
     private ArrayList<String> name = new ArrayList<>();

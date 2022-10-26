@@ -29,6 +29,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is AdminHome screen java file to provide logic activity_admin_home layout xml
+ * This screen has navigation option to view all station and user details
+ * This screen has option to register new station owner details
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class AdminHome extends AppCompatActivity {
 
     Button btnRegister,btnStation,btnUsers;

@@ -21,6 +21,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This is StationOwnerHome screen java file to provide logic activity_station_owner_home layout xml
+ * This screen is to display the station details to owner and give option to navigate to update fuel status details
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class StationOwnerHome extends AppCompatActivity {
     Button btnUpdateP;
     TextView name,stName,petrol,superPetrol,diesel,superDiesel,location,pQ,psQ,dQ,sdQ,pArrival,psArrival,dArrival,sdArrival;

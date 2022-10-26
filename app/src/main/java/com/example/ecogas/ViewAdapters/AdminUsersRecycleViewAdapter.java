@@ -14,6 +14,12 @@ import com.example.ecogas.R;
 
 import java.util.ArrayList;
 
+/**
+ * This adapter class is to set and initiate the user details in recycle view to view in AdminViewStations screen
+ *
+ * Author: IT19153414 Akeel M.N.M
+ */
+
 public class AdminUsersRecycleViewAdapter extends RecyclerView.Adapter<AdminUsersRecycleViewAdapter.ViewHolder>{
 
     private ArrayList<String> user = new ArrayList<>();
