@@ -54,19 +54,19 @@ public class AdminHome extends AppCompatActivity {
 
         name.setText(new StringBuilder().append("Welcome").append(" ").append((SessionApplication.getUserName())));
 
-        /** dding navigation to register new station in app by admin **/
+        /** adding navigation to register new station in app by admin **/
         btnRegister.setOnClickListener(view -> {
             Intent intent = new Intent(AdminHome.this,StationOwnerRegister.class);
             startActivity(intent);
         });
 
-        /** dding navigation to view all station in the app **/
+        /** adding navigation to view all station in the app **/
         btnStation.setOnClickListener(view -> {
             Intent intent = new Intent(AdminHome.this,AdminViewStations.class);
             startActivity(intent);
         });
 
-        /** dding navigation to view all users in the app **/
+        /** adding navigation to view all users in the app **/
         btnUsers.setOnClickListener(view -> {
             Intent intent = new Intent(AdminHome.this,AdminViewUsers.class);
             startActivity(intent);

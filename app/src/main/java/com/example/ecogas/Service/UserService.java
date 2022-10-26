@@ -1,7 +1,6 @@
 package com.example.ecogas.Service;
 
-import com.example.ecogas.Model.Fuel;
-import com.example.ecogas.Model.Station;
+
 import com.example.ecogas.Model.User;
 
 import java.util.List;
@@ -13,6 +12,11 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+
+/**
+ * This interface is to call ecogas rest api http methods in the backend api
+ *  Author: IT19167442 Nusky M.A.M
+ */
 
 public interface UserService {
 
