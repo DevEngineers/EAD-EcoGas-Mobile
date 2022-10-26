@@ -41,4 +41,10 @@
     <string name="profile">Edit Profile</string>
     <string name="viewAllStations">View All Stations</string>
     <string name="viewAllUsers">View All Users</string>
+    <string name="search">Search</string>
+    <string name="fuel_type">Fuel Type</string>
+    <string name="textview">TextView</string>
+    <string name="queue_line_number">Queue Line Number:</string>
+    <string name="joined_queue">Joined Queue</string>
+
 </resources>
