@@ -30,7 +30,7 @@ public class StationListViewAdapter extends ArrayAdapter<Station> {
 
         StName.setText(station.getStationName());
         StLocation.setText(station.getLocation());
-        StID.setText(station.getStationID());
+        StID.setText(station.getId());
         Log.d("TAG","Atepter............................................ . " +station.getOwnerName() );
 
         return convertView;

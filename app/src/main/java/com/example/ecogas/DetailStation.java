@@ -88,7 +88,7 @@ public class DetailStation extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Station station = response.body();
 
-                    station.setStationID(stationID);
+                    station.setId(stationID);
                     StName.setText(station.getStationName());
                     StLocation.setText(station.getLocation());
                     StPetrol92A.setText(station.getFuel().get(0).getCapacity());
@@ -113,14 +113,14 @@ public class DetailStation extends AppCompatActivity {
 
         btnAddQueue.setOnClickListener(view -> {
             Queues queues = new Queues();
-            queues.setStationID(stationID);
+            queues.setId(stationID);
             queues.setUserID(SessionApplication.getUserID());
             queues.setFuelName(fuelName);
             queues.setArrivalDate(String.valueOf(Calendar.getInstance()));
             queues.setArrivalTime(String.valueOf(Calendar.getInstance().getTime()));
 
             Log.d("TAG" , "----------------============Fuel name-------- " +queues.getFuelName() );
-            Log.d("TAG" , "----------------============ST ID-------- " +queues.getStationID());
+            Log.d("TAG" , "----------------============ST ID-------- " +queues.getId());
 
             if(fuelName==null){
                 Toast.makeText(DetailStation.this,"Please select Fuel Type!!!", Toast.LENGTH_SHORT).show();

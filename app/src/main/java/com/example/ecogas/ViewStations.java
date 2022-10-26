@@ -127,7 +127,7 @@ public class ViewStations extends AppCompatActivity {
                     List<Station> stations = response.body();
                     Toast.makeText(ViewStations.this, String.valueOf(stations.size()), Toast.LENGTH_SHORT).show();
                     for (Station st: stations){
-                        Station St01 = new Station(st.getStationID(), st.getOwnerID(), st.getOwnerName(),
+                        Station St01 = new Station(st.getId(), st.getOwnerID(), st.getOwnerName(),
                                 st.getStationName(), st.getLocation(), st.getFuel(), st.getPetrolQueue(),
                                 st.getSuperPetrolQueue(), st.getDieselQueue(), st.getSuperDieselQueue());
                         stationsList.add(St01);
@@ -142,12 +142,12 @@ public class ViewStations extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                             Station selectStation = (Station) (listView.getItemAtPosition(position));
-                            Log.d("TAG","000000000000000000000000 000000000..........................." + selectStation.getStationID());
+                            Log.d("TAG","000000000000000000000000 000000000..........................." + selectStation.getId());
                             Intent showDetail = new Intent(getApplicationContext(), DetailStation.class);
-                            showDetail.putExtra("id", selectStation.getStationID());
+                            showDetail.putExtra("id", selectStation.getId());
                             startActivity(showDetail);
 
-                            Toast.makeText(ViewStations.this, "You Clicked "+ selectStation.getStationID(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewStations.this, "You Clicked "+ selectStation.getId(), Toast.LENGTH_SHORT).show();
 
                         }
                     }));
