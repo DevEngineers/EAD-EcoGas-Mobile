@@ -2,7 +2,6 @@ package com.example.ecogas.Model;
 
 /**
  * Fuel Model Class
- *
  * @Author: IT19175126 Zumry A.M
  */
 
