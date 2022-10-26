@@ -16,7 +16,6 @@ import java.util.List;
  * Author: IT19175126 Zumry A.M
  */
 
-
 public class StationListViewAdapter extends ArrayAdapter<Station> {
 
     public StationListViewAdapter(Context context, int resource, List<Station> stationsList) {
@@ -40,5 +39,4 @@ public class StationListViewAdapter extends ArrayAdapter<Station> {
 
         return convertView;
     }
-
 }

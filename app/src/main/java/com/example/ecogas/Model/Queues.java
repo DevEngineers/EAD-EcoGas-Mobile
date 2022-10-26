@@ -5,7 +5,6 @@ package com.example.ecogas.Model;
  * @Author: IT19175126 Zumry A.M
  */
 
-
 public class Queues {
 
     private String id;
