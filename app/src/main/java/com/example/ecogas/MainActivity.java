@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                                                 SessionApplication.setUserType(user.getType());
 
                                                 if(user.getType().equals("User")){
-                                                    Intent intent  = new Intent(getApplicationContext(), EditProfile.class);
+                                                    Intent intent  = new Intent(getApplicationContext(), ViewStations.class);
                                                     startActivity(intent);
                                                 }
                                                 else if(user.getType().equals("StationOwner")){

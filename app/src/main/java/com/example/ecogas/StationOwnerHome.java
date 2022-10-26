@@ -36,7 +36,6 @@ public class StationOwnerHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_owner_home);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnUpdateP=findViewById(R.id.updateP);
 
