@@ -47,7 +47,7 @@ public class AdminUsersRecycleViewAdapter extends RecyclerView.Adapter<AdminUser
 
         holder.name.setText(user.get(position));
         holder.userNameView.setText(userName.get(position));
-        holder.userType.setText(userName.get(position));
+        holder.userTypeView.setText(userType.get(position));
     }
 
     @Override
@@ -56,14 +56,14 @@ public class AdminUsersRecycleViewAdapter extends RecyclerView.Adapter<AdminUser
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name,userNameView,userType;
+        TextView name,userNameView,userTypeView;
         RelativeLayout adminUserViewLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.userViewName);
             userNameView=itemView.findViewById(R.id.userViewUserName);
-            userType = itemView.findViewById(R.id.userType);
+            userTypeView = itemView.findViewById(R.id.userType);
             adminUserViewLayout=itemView.findViewById(R.id.adminUserViewLayout);
         }
 
