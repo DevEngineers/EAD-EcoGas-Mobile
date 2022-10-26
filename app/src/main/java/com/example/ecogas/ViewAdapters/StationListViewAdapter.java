@@ -1,6 +1,7 @@
 package com.example.ecogas.ViewAdapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,9 @@ import com.example.ecogas.Model.Station;
 import com.example.ecogas.R;
 import java.util.List;
 
-public class StationAdapter extends ArrayAdapter<Station> {
+public class StationListViewAdapter extends ArrayAdapter<Station> {
 
-    public StationAdapter(Context context, int resource, List<Station> stationsList) {
+    public StationListViewAdapter(Context context, int resource, List<Station> stationsList) {
         super(context, resource, stationsList);
     }
 
@@ -21,16 +22,18 @@ public class StationAdapter extends ArrayAdapter<Station> {
         Station station = getItem(position);
 
         if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.station_cell, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.station_layout, parent, false);
         }
         TextView StName = convertView.findViewById(R.id.StNameText);
         TextView StLocation = convertView.findViewById(R.id.StLocationText);
-        TextView StId = convertView.findViewById(R.id.StFuelText);
+        TextView StID = convertView.findViewById(R.id.stID);
 
-        StId.setText(station.getStationID());
         StName.setText(station.getStationName());
-        StLocation.setText(station.getStationLocation());
+        StLocation.setText(station.getLocation());
+        StID.setText(station.getStationID());
+        Log.d("TAG","Atepter............................................ . " +station.getOwnerName() );
 
         return convertView;
     }
+
 }
