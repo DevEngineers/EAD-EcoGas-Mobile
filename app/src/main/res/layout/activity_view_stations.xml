@@ -15,11 +15,6 @@
             android:layout_margin="10dp"
             android:id="@+id/searchTabsLayout">
 
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-
             <Spinner
                 android:id="@+id/spinnerLocation"
                 android:layout_width="match_parent"
@@ -27,9 +22,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="24dp"/>
-
-
-<!--            </LinearLayout>-->
 
             <Button
                 android:id="@+id/searchBtn"
@@ -56,27 +48,49 @@
             android:layout_height="wrap_content"
             android:text="@string/joined_queue"
             android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/black"
             android:padding="5dp"
             style="@style/TextAppearance.MaterialComponents.Subtitle2"/>
+
+        <TextView
+            android:id="@+id/stNameQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:text="@string/textview" />
+        <TextView
+            android:id="@+id/fuelTypeQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@string/textview"
+            app:drawableStartCompat="@drawable/ic_station" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
-
             <TextView
-                android:id="@+id/stNameQ"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/textview" />
-
+                android:layout_marginStart="10dp"
+                android:text="@string/queue_line_number" />
             <TextView
-                android:id="@+id/fuelTypeQ"
+                android:id="@+id/noQueueQ"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:drawableStart="@drawable/ic_station"
+                android:layout_marginStart="16dp"
                 android:text="@string/textview" />
         </LinearLayout>
         <LinearLayout
@@ -84,29 +98,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/queue_line_number" />
-
-            <TextView
-                android:id="@+id/noQueueQ"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/textview" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Joined Time: " />
-
+                android:text="@string/joined_time" />
             <TextView
                 android:id="@+id/jointTimeQ"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/textview" />
         </LinearLayout>
         <Button
@@ -114,9 +115,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="Remove Queue"
+            android:backgroundTint="@color/secondary_button"
+            android:text="@string/remove_queue"
             android:gravity="center" />
-
     </LinearLayout>
 
     <ListView
@@ -124,9 +125,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        />
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="5dp" />
 
 </LinearLayout>
