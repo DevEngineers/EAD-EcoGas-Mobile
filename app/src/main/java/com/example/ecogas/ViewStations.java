@@ -64,10 +64,43 @@ public class ViewStations extends AppCompatActivity {
         initImageBitmaps();
         checkUserJoinedQueue();
 
-         /** Setting data to view fuel types in spinner for select fuel type **/
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ViewStations.this, android.R.layout.simple_spinner_item, fuelType);
-        arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
-        fuelLocationSpinner.setAdapter(arrayAdapter);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
+        StationService stationService = retrofit.create(StationService.class);
+        Call<List<Station>> call = stationService.getAllStationDetails();
+        call.enqueue(new Callback<List<Station>>() {
+            @Override
+            public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
+                if(response.isSuccessful()) {
+                    List<Station> stations = response.body();
+                    for (Station station: stations){
+                        locationList.add(String.valueOf(station.getLocation()));
+                    }
+
+                    /** Setting data to view fuel types in spinner for select fuel type **/
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ViewStations.this, android.R.layout.simple_spinner_item, locationList);
+                    arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+                    fuelLocationSpinner.setAdapter(arrayAdapter);
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Station>> call, Throwable t) { }
+        });
+
+        listView = (ListView) findViewById(R.id.stationsListView);
+        StationListViewAdapter stationListViewAdapter = new StationListViewAdapter(getApplicationContext(), 0, stationsList);
+        listView.setAdapter(stationListViewAdapter);
+
+        listView.setOnItemClickListener((new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Station selectStation = (Station) (listView.getItemAtPosition(position));
+                Intent showDetail = new Intent(getApplicationContext(), DetailStation.class);
+                showDetail.putExtra("id", selectStation.getId());
+                startActivity(showDetail);
+            }
+        }));
+
 
         /** Listener to capture the selected data on spinner **/
         fuelLocationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -84,48 +117,40 @@ public class ViewStations extends AppCompatActivity {
 
         btnSearch.setOnClickListener(view -> {
             /** Api call to retrieve the details of the station by Location **/
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
-            StationService stationService = retrofit.create(StationService.class);
-            Call<List<Station>> call = stationService.getStationByLocation(selectedLocation);
-            Toast.makeText(this, "Location : "+selectedLocation, Toast.LENGTH_SHORT).show();
-            call.enqueue(new Callback<List<Station>>() {
+            Retrofit retrofitS = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
+            StationService stationServiceS = retrofitS.create(StationService.class);
+            Call<List<Station>> callS = stationServiceS.getStationByLocation(selectedLocation);
+            callS.enqueue(new Callback<List<Station>>() {
                 @Override
                 public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
                     if(response.isSuccessful()) {
+                        stationsList.removeAll(stationsList);
                         List<Station> stations = response.body();
                         for (Station st: stations){
                             Station St01 = new Station(st.getId(), st.getOwnerID(), st.getOwnerName(),
-                                st.getStationName(), st.getLocation(), st.getFuel(), st.getPetrolQueue(),
-                                st.getSuperPetrolQueue(), st.getDieselQueue(), st.getSuperDieselQueue());
+                                    st.getStationName(), st.getLocation(), st.getFuel(), st.getPetrolQueue(),
+                                    st.getSuperPetrolQueue(), st.getDieselQueue(), st.getSuperDieselQueue());
                             stationsList.add(St01);
                         }
-                        listView = (ListView) findViewById(R.id.stationsListView);
-                        StationListViewAdapter stationListViewAdapter = new StationListViewAdapter(getApplicationContext(), 0, stationsList);
-                        listView.setAdapter(stationListViewAdapter);
-
-                        listView.setOnItemClickListener((new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                                Station selectStation = (Station) (listView.getItemAtPosition(position));
-                                Intent showDetail = new Intent(getApplicationContext(), DetailStation.class);
-                                showDetail.putExtra("id", selectStation.getId());
-                                startActivity(showDetail);
-                            }
-                        }));
+                        stationListViewAdapter.notifyDataSetChanged();
                     }
                 }
+
                 @Override
-                public void onFailure(Call<List<Station>> call, Throwable t) { }
+                public void onFailure(Call<List<Station>> call, Throwable t) {
+
+                }
             });
 
         });
 
+
         /** Api call to Remove Queue **/
         btnRemoveQueue.setOnClickListener(v -> {
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
-            QueueService queueService = retrofit.create(QueueService.class);
-            Call<Queues> call = queueService.removeUserInQueue(queueID);
-            call.enqueue(new Callback<Queues>() {
+            Retrofit retrofitR = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
+            QueueService queueService = retrofitR.create(QueueService.class);
+            Call<Queues> callR = queueService.removeUserInQueue(queueID);
+            callR.enqueue(new Callback<Queues>() {
                 @Override
                 public void onResponse(Call<Queues> call, Response<Queues> response) {
                     if(response.isSuccessful()){
@@ -220,35 +245,7 @@ public class ViewStations extends AppCompatActivity {
 
     /** Api call to retrieve the all details of the station **/
     private void initImageBitmaps() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
-        StationService stationService = retrofit.create(StationService.class);
-        Call<List<Station>> call = stationService.getAllStationDetails();
-        call.enqueue(new Callback<List<Station>>() {
-            @Override
-            public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
-                if(response.isSuccessful()) {
-                    List<Station> stations = response.body();
-                    for (Station station: stations){
-                        locationList.add(station.getLocation());
-                    }
-                    listView = (ListView) findViewById(R.id.stationsListView);
-                    StationListViewAdapter stationListViewAdapter = new StationListViewAdapter(getApplicationContext(), 0, stationsList);
-                    listView.setAdapter(stationListViewAdapter);
 
-                    listView.setOnItemClickListener((new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            Station selectStation = (Station) (listView.getItemAtPosition(position));
-                            Intent showDetail = new Intent(getApplicationContext(), DetailStation.class);
-                            showDetail.putExtra("id", selectStation.getId());
-                            startActivity(showDetail);
-                        }
-                    }));
-                }
-            }
-            @Override
-            public void onFailure(Call<List<Station>> call, Throwable t) { }
-        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
