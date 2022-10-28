@@ -50,7 +50,7 @@ public class UserStationDetailsView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.station_detail_layout);
+        setContentView(R.layout.user_station_detail_layout);
 
         btnAddQueue = findViewById(R.id.addQueueBtn);
         StName = (TextView) findViewById(R.id.stNameText);

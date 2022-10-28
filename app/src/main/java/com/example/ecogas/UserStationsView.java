@@ -48,7 +48,7 @@ public class UserStationsView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_stations);
+        setContentView(R.layout.activity_user_stations_view);
 
         joinedQueueLayout = findViewById(R.id.joinedQueueLayout);
         btnSearch = findViewById(R.id.searchBtn);
