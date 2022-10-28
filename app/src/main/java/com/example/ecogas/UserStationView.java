@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Author: IT19175126 Zumry A.M
  */
 
-public class DetailStation extends AppCompatActivity {
+public class UserStationView extends AppCompatActivity {
 
     String stID;
     Button btnAddQueue;
@@ -74,7 +74,7 @@ public class DetailStation extends AppCompatActivity {
         Spinner fuelNameSpinner = (Spinner) findViewById(R.id.spinnerFuelType);
 
         /** Setting data to view fuel types in spinner for select fuel type **/
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(DetailStation.this, android.R.layout.simple_spinner_item, fuelType);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UserStationView.this, android.R.layout.simple_spinner_item, fuelType);
         arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         fuelNameSpinner.setAdapter(arrayAdapter);
 
@@ -107,24 +107,16 @@ public class DetailStation extends AppCompatActivity {
                     StPetrol95Q.setText(String.valueOf(station.getSuperPetrolQueue()));
                     StDieselQ.setText(String.valueOf(station.getDieselQueue()));
                     StSDieselQ.setText(String.valueOf(station.getSuperDieselQueue()));
+                    StPetrol92A.setText(station.getFuel().get(0).getCapacity());
+                    StPetrol95A.setText(station.getFuel().get(1).getCapacity());
+                    StDieselA.setText(station.getFuel().get(2).getCapacity());
+                    StSDieselA.setText(station.getFuel().get(3).getCapacity());
+                    StPetrol92Arriving.setText(new StringBuilder().append(station.getFuel().get(0).getArrivalDate()).append(" ").append(station.getFuel().get(0).getArrivalTime()));
+                    StPetrol95Arriving.setText(new StringBuilder().append(station.getFuel().get(1).getArrivalDate()).append(" ").append(station.getFuel().get(1).getArrivalTime()));
+                    StDieselArriving.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
+                    StSDieselArriving.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
-                    for (Fuel feul:station.getFuel()){
-                        if(feul.getFuelName().equals("Petrol")){
-                            StPetrol92A.setText(feul.getCapacity());
-                            StPetrol92Arriving.setText(feul.getArrivalTime());
-                        } else if(feul.getFuelName().equals("SuperPetrol")){
-                            StPetrol95A.setText(feul.getCapacity());
-                            StPetrol95Arriving.setText(feul.getArrivalTime());
-                        }
-                        else if(feul.getFuelName().equals("Diesel")){
-                            StDieselA.setText(feul.getCapacity());
-                            StDieselArriving.setText(feul.getArrivalTime());
-                        }
-                        else if(feul.getFuelName().equals("SuperDiesel")){
-                            StSDieselA.setText(feul.getCapacity());
-                            StSDieselArriving.setText(feul.getArrivalTime());
-                        }
-                    }
+
 
                 }
             }
@@ -152,7 +144,7 @@ public class DetailStation extends AppCompatActivity {
             queues.setArrivalTime(nowTime);
 
             if(fuelName.equals("Select Fuel Type")){
-                Toast.makeText(DetailStation.this,"Please select Fuel Type!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserStationView.this,"Please select Fuel Type!!!", Toast.LENGTH_SHORT).show();
             }else{
                 /** adding queue methods */
                 Retrofit retrofitQ = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
@@ -174,11 +166,11 @@ public class DetailStation extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<Station> call, Response<Station> response) {
                                     if (response.isSuccessful()){
-                                        Toast.makeText(DetailStation.this,"Joined Queue Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(DetailStation.this,ViewStations.class);
+                                        Toast.makeText(UserStationView.this,"Joined Queue Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(UserStationView.this,ViewStations.class);
                                         startActivity(intent);
                                     }else{
-                                        Toast.makeText(DetailStation.this,"Unable to joint the queue ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(UserStationView.this,"Unable to joint the queue ", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 @Override
@@ -223,13 +215,13 @@ public class DetailStation extends AppCompatActivity {
         SessionApplication.setStationID("");
 
         /** Redirecting to login screen after logout via Intent **/
-        Intent intent = new Intent(DetailStation.this, MainActivity.class);
+        Intent intent = new Intent(UserStationView.this, MainActivity.class);
         startActivity(intent);
     }
 
     private void editProfile() {
         /** Redirecting to edit profile via Intent **/
-        Intent intent = new Intent(DetailStation.this, EditProfile.class);
+        Intent intent = new Intent(UserStationView.this, EditProfile.class);
         startActivity(intent);
     }
 
@@ -238,7 +230,7 @@ public class DetailStation extends AppCompatActivity {
         super.onStart();
         /** check user is log in**/
         if(SessionApplication.getUserName().equals("")){
-            Intent intent = new Intent(DetailStation.this,MainActivity.class);
+            Intent intent = new Intent(UserStationView.this,MainActivity.class);
             startActivity(intent);
         }
 

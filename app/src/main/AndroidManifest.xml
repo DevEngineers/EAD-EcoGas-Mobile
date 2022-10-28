@@ -76,7 +76,7 @@
                 android:value=".ViewStations" />
         </activity>
         <activity
-            android:name=".DetailStation"
+            android:name=".UserStationView"
             android:exported="true" >
         </activity>
         <activity

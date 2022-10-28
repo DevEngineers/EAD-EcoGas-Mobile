@@ -23,7 +23,6 @@ import com.example.ecogas.Service.QueueService;
 import com.example.ecogas.Service.StationService;
 import com.example.ecogas.ViewAdapters.StationListViewAdapter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,7 +94,7 @@ public class ViewStations extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Station selectStation = (Station) (listView.getItemAtPosition(position));
-                Intent showDetail = new Intent(getApplicationContext(), DetailStation.class);
+                Intent showDetail = new Intent(getApplicationContext(), UserStationView.class);
                 showDetail.putExtra("id", selectStation.getId());
                 startActivity(showDetail);
             }

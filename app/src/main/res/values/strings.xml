@@ -17,7 +17,7 @@
     <string name="update_status">Update Fuel Status</string>
     <string name="d_arr">TextView</string>
     <string name="diesel_fuel">TextView</string>
-    <string name="fuel_arriving_time">Fuel Arriving Time</string>
+    <string name="fuel_arriving_time">Next Fuel Arrivals</string>
     <string name="petrol92_fuel">TextView</string>
     <string name="update_title">Update Fuel Status</string>
     <string name="fuel">Fuel</string>
