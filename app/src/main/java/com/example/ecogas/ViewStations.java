@@ -38,7 +38,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ViewStations extends AppCompatActivity {
 
     ArrayList<Station> stationsList = new ArrayList<Station>();
-    List<String> fuelType = Arrays.asList("Select Location","Kandy","SuperPetrol","Diesel","SuperDiesel");
     List<String> locationList = new ArrayList<String>();
     String selectedLocation, queueID, stationID, fuelName;
     private ListView listView;
@@ -72,6 +71,7 @@ public class ViewStations extends AppCompatActivity {
             public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
                 if(response.isSuccessful()) {
                     List<Station> stations = response.body();
+                    locationList.add("Select Location");
                     for (Station station: stations){
                         locationList.add(String.valueOf(station.getLocation()));
                     }
@@ -116,32 +116,36 @@ public class ViewStations extends AppCompatActivity {
         });
 
         btnSearch.setOnClickListener(view -> {
-            /** Api call to retrieve the details of the station by Location **/
-            Retrofit retrofitS = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
-            StationService stationServiceS = retrofitS.create(StationService.class);
-            Call<List<Station>> callS = stationServiceS.getStationByLocation(selectedLocation);
-            callS.enqueue(new Callback<List<Station>>() {
-                @Override
-                public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
-                    if(response.isSuccessful()) {
-                        stationsList.removeAll(stationsList);
-                        List<Station> stations = response.body();
-                        for (Station st: stations){
-                            Station St01 = new Station(st.getId(), st.getOwnerID(), st.getOwnerName(),
-                                    st.getStationName(), st.getLocation(), st.getFuel(), st.getPetrolQueue(),
-                                    st.getSuperPetrolQueue(), st.getDieselQueue(), st.getSuperDieselQueue());
-                            stationsList.add(St01);
+
+            if(selectedLocation.equals("Select Location")){
+                Toast.makeText(ViewStations.this, "Please Select a Location", Toast.LENGTH_SHORT).show();
+            }else {
+                /** Api call to retrieve the details of the station by Location **/
+                Retrofit retrofitS = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
+                StationService stationServiceS = retrofitS.create(StationService.class);
+                Call<List<Station>> callS = stationServiceS.getStationByLocation(selectedLocation);
+                callS.enqueue(new Callback<List<Station>>() {
+                    @Override
+                    public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
+                        if(response.isSuccessful()) {
+                            stationsList.removeAll(stationsList);
+                            List<Station> stations = response.body();
+                            for (Station st: stations){
+                                Station St01 = new Station(st.getId(), st.getOwnerID(), st.getOwnerName(),
+                                        st.getStationName(), st.getLocation(), st.getFuel(), st.getPetrolQueue(),
+                                        st.getSuperPetrolQueue(), st.getDieselQueue(), st.getSuperDieselQueue());
+                                stationsList.add(St01);
+                            }
+                            stationListViewAdapter.notifyDataSetChanged();
                         }
-                        stationListViewAdapter.notifyDataSetChanged();
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<Station>> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<List<Station>> call, Throwable t) {
 
-                }
-            });
-
+                    }
+                });
+            }
         });
 
 
