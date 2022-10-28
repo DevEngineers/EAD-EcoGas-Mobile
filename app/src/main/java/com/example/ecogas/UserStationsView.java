@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Author: IT19175126 Zumry A.M
  */
 
-public class ViewStations extends AppCompatActivity {
+public class UserStationsView extends AppCompatActivity {
 
     ArrayList<Station> stationsList = new ArrayList<Station>();
     List<String> locationList = new ArrayList<String>();
@@ -76,7 +76,7 @@ public class ViewStations extends AppCompatActivity {
                     }
 
                     /** Setting data to view fuel types in spinner for select fuel type **/
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ViewStations.this, android.R.layout.simple_spinner_item, locationList);
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UserStationsView.this, android.R.layout.simple_spinner_item, locationList);
                     arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
                     fuelLocationSpinner.setAdapter(arrayAdapter);
 
@@ -94,7 +94,7 @@ public class ViewStations extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Station selectStation = (Station) (listView.getItemAtPosition(position));
-                Intent showDetail = new Intent(getApplicationContext(), UserStationView.class);
+                Intent showDetail = new Intent(getApplicationContext(), UserStationDetailsView.class);
                 showDetail.putExtra("id", selectStation.getId());
                 startActivity(showDetail);
             }
@@ -117,7 +117,7 @@ public class ViewStations extends AppCompatActivity {
         btnSearch.setOnClickListener(view -> {
 
             if(selectedLocation.equals("Select Location")){
-                Toast.makeText(ViewStations.this, "Please Select a Location", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserStationsView.this, "Please Select a Location", Toast.LENGTH_SHORT).show();
             }else {
                 /** Api call to retrieve the details of the station by Location **/
                 Retrofit retrofitS = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl() + "Station/").addConverterFactory(GsonConverterFactory.create()).build();
@@ -170,9 +170,9 @@ public class ViewStations extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Station> call, Response<Station> response) {
                                 if (response.isSuccessful()){
-                                    Toast.makeText(ViewStations.this,"Removed from the Queue Successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(UserStationsView.this,"Removed from the Queue Successfully", Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(ViewStations.this,"Unable to Remove from the queue ", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(UserStationsView.this,"Unable to Remove from the queue ", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override
@@ -231,7 +231,7 @@ public class ViewStations extends AppCompatActivity {
                                 }
 
                             }else{
-                                Toast.makeText(ViewStations.this, "Unable to get Queue details", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UserStationsView.this, "Unable to get Queue details", Toast.LENGTH_SHORT).show();
                             }
                         }
                         @Override
@@ -279,13 +279,13 @@ public class ViewStations extends AppCompatActivity {
         SessionApplication.setStationID("");
 
         /** Redirecting to login screen after logout via Intent **/
-        Intent intent = new Intent(ViewStations.this, MainActivity.class);
+        Intent intent = new Intent(UserStationsView.this, MainActivity.class);
         startActivity(intent);
     }
 
     private void editProfile() {
         /** Redirecting to edit profile via Intent **/
-        Intent intent = new Intent(ViewStations.this, EditProfile.class);
+        Intent intent = new Intent(UserStationsView.this, EditProfile.class);
         startActivity(intent);
     }
 
@@ -294,7 +294,7 @@ public class ViewStations extends AppCompatActivity {
         super.onStart();
         /** check user is log in**/
         if(SessionApplication.getUserName().equals("")){
-            Intent intent = new Intent(ViewStations.this,MainActivity.class);
+            Intent intent = new Intent(UserStationsView.this,MainActivity.class);
             startActivity(intent);
         }
 
