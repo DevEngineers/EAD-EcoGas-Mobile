@@ -24,7 +24,6 @@
                 android:id="@+id/stName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:text="@string/station_name"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textAlignment="textStart" />
@@ -46,7 +45,6 @@
                 android:id="@+id/stLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:text="@string/st_location"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textAlignment="textStart" />
@@ -66,14 +64,14 @@
         android:id="@+id/stAvailableFuelLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/textViewAvailableFuel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="@string/available_fuel"
             style="@style/TextAppearance.MaterialComponents.Headline6" />
         <LinearLayout
@@ -158,16 +156,17 @@
         android:id="@+id/stFuelArrivingLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/textViewArrivingFuel"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/fuel_arriving_time"
-            style="@style/TextAppearance.MaterialComponents.Headline6" />
+            android:layout_marginTop="5dp"
+            android:text="@string/fuel_arriving_time" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -189,11 +188,17 @@
                 android:text="@string/textview"
                 android:textSize="16sp"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
-            <TextView
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+           <TextView
                 android:id="@+id/stPetrol95Arriving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/petrol_95"
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:textAlignment="textStart" />
@@ -227,11 +232,18 @@
                 android:text="@string/textview"
                 android:textSize="16sp"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
-            <TextView
+          ialComponents.Subtitle1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+          <TextView
                 android:id="@+id/stSDieselArriving"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/superDiesel"
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:textAlignment="textStart" />
@@ -244,20 +256,21 @@
                 android:textSize="16sp"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/stVehicleQueueLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/textViewVehicleQueue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="@string/number_of_vehicles_in_queue"
             style="@style/TextAppearance.MaterialComponents.Headline6" />
         <LinearLayout
@@ -341,7 +354,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/searchTabsLayout">
 
             <Spinner
@@ -350,7 +363,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="15dp"/>
 
             <Button
                 android:id="@+id/addQueueBtn"
