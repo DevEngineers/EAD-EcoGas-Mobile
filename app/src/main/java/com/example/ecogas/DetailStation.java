@@ -44,6 +44,7 @@ public class DetailStation extends AppCompatActivity {
     String fuelName;
     String stationID;
     TextView StName,StLocation,StPetrol92A,StPetrol95A,StDieselA,StSDieselA,StPetrol92Q,StPetrol95Q,StDieselQ,StSDieselQ;
+    TextView StPetrol92Arriving,StPetrol95Arriving,StDieselArriving,StSDieselArriving;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +63,10 @@ public class DetailStation extends AppCompatActivity {
         StPetrol95Q = (TextView) findViewById(R.id.stPetrol95TextQ);
         StDieselQ = (TextView) findViewById(R.id.stDieselTextQ);
         StSDieselQ = (TextView) findViewById(R.id.stSDieselTextQ);
+        StPetrol92Arriving = (TextView) findViewById(R.id.stPetrol92TextArriving);
+        StPetrol95Arriving = (TextView) findViewById(R.id.stPetrol95TextArriving);
+        StDieselArriving = (TextView) findViewById(R.id.stDieselTextArriving);
+        StSDieselArriving = (TextView) findViewById(R.id.stSDieselTextArriving);
 
         Bundle bundle = getIntent().getExtras();
         stID = bundle.getString("id");
@@ -98,14 +103,29 @@ public class DetailStation extends AppCompatActivity {
                     stationID = station.getId();
                     StName.setText(station.getStationName());
                     StLocation.setText(station.getLocation());
-                    StPetrol92A.setText(station.getFuel().get(0).getCapacity());
-                    StPetrol95A.setText(station.getFuel().get(1).getCapacity());
-                    StDieselA.setText(station.getFuel().get(2).getCapacity());
-                    StSDieselA.setText(station.getFuel().get(3).getCapacity());
                     StPetrol92Q.setText(String.valueOf(station.getPetrolQueue()));
                     StPetrol95Q.setText(String.valueOf(station.getSuperPetrolQueue()));
                     StDieselQ.setText(String.valueOf(station.getDieselQueue()));
                     StSDieselQ.setText(String.valueOf(station.getSuperDieselQueue()));
+
+                    for (Fuel feul:station.getFuel()){
+                        if(feul.getFuelName().equals("Petrol")){
+                            StPetrol92A.setText(feul.getCapacity());
+                            StPetrol92Arriving.setText(feul.getArrivalTime());
+                        } else if(feul.getFuelName().equals("SuperPetrol")){
+                            StPetrol95A.setText(feul.getCapacity());
+                            StPetrol95Arriving.setText(feul.getArrivalTime());
+                        }
+                        else if(feul.getFuelName().equals("Diesel")){
+                            StDieselA.setText(feul.getCapacity());
+                            StDieselArriving.setText(feul.getArrivalTime());
+                        }
+                        else if(feul.getFuelName().equals("SuperDiesel")){
+                            StSDieselA.setText(feul.getCapacity());
+                            StSDieselArriving.setText(feul.getArrivalTime());
+                        }
+                    }
+
                 }
             }
             @Override
