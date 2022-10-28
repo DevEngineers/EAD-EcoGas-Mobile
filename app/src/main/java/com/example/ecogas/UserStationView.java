@@ -116,8 +116,6 @@ public class UserStationView extends AppCompatActivity {
                     StDieselArriving.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
                     StSDieselArriving.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
-
-
                 }
             }
             @Override
