@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Author: IT19175126 Zumry A.M
  */
 
-public class UserStationView extends AppCompatActivity {
+public class UserStationDetailsView extends AppCompatActivity {
 
     String stID;
     Button btnAddQueue;
@@ -50,7 +50,7 @@ public class UserStationView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.station_detail_layout);
+        setContentView(R.layout.user_station_detail_layout);
 
         btnAddQueue = findViewById(R.id.addQueueBtn);
         StName = (TextView) findViewById(R.id.stNameText);
@@ -74,7 +74,7 @@ public class UserStationView extends AppCompatActivity {
         Spinner fuelNameSpinner = (Spinner) findViewById(R.id.spinnerFuelType);
 
         /** Setting data to view fuel types in spinner for select fuel type **/
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UserStationView.this, android.R.layout.simple_spinner_item, fuelType);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UserStationDetailsView.this, android.R.layout.simple_spinner_item, fuelType);
         arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         fuelNameSpinner.setAdapter(arrayAdapter);
 
@@ -116,8 +116,6 @@ public class UserStationView extends AppCompatActivity {
                     StDieselArriving.setText(new StringBuilder().append(station.getFuel().get(2).getArrivalDate()).append(" ").append(station.getFuel().get(2).getArrivalTime()));
                     StSDieselArriving.setText(new StringBuilder().append(station.getFuel().get(3).getArrivalDate()).append(" ").append(station.getFuel().get(3).getArrivalTime()));
 
-
-
                 }
             }
             @Override
@@ -144,7 +142,7 @@ public class UserStationView extends AppCompatActivity {
             queues.setArrivalTime(nowTime);
 
             if(fuelName.equals("Select Fuel Type")){
-                Toast.makeText(UserStationView.this,"Please select Fuel Type!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserStationDetailsView.this,"Please select Fuel Type!!!", Toast.LENGTH_SHORT).show();
             }else{
                 /** adding queue methods */
                 Retrofit retrofitQ = new Retrofit.Builder().baseUrl(SessionApplication.getApiUrl()).addConverterFactory(GsonConverterFactory.create()).build();
@@ -166,11 +164,11 @@ public class UserStationView extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<Station> call, Response<Station> response) {
                                     if (response.isSuccessful()){
-                                        Toast.makeText(UserStationView.this,"Joined Queue Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(UserStationView.this,ViewStations.class);
+                                        Toast.makeText(UserStationDetailsView.this,"Joined Queue Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(UserStationDetailsView.this, UserStationsView.class);
                                         startActivity(intent);
                                     }else{
-                                        Toast.makeText(UserStationView.this,"Unable to joint the queue ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(UserStationDetailsView.this,"Unable to joint the queue ", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 @Override
@@ -215,13 +213,13 @@ public class UserStationView extends AppCompatActivity {
         SessionApplication.setStationID("");
 
         /** Redirecting to login screen after logout via Intent **/
-        Intent intent = new Intent(UserStationView.this, MainActivity.class);
+        Intent intent = new Intent(UserStationDetailsView.this, MainActivity.class);
         startActivity(intent);
     }
 
     private void editProfile() {
         /** Redirecting to edit profile via Intent **/
-        Intent intent = new Intent(UserStationView.this, EditProfile.class);
+        Intent intent = new Intent(UserStationDetailsView.this, EditProfile.class);
         startActivity(intent);
     }
 
@@ -230,7 +228,7 @@ public class UserStationView extends AppCompatActivity {
         super.onStart();
         /** check user is log in**/
         if(SessionApplication.getUserName().equals("")){
-            Intent intent = new Intent(UserStationView.this,MainActivity.class);
+            Intent intent = new Intent(UserStationDetailsView.this,MainActivity.class);
             startActivity(intent);
         }
 
